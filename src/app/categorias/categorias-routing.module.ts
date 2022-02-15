@@ -4,6 +4,13 @@ import { ListarCategoriasComponent } from './componentes/listar-categorias/lista
 
 const routes: Routes = [
   {
+
+      path: '',
+      redirectTo: 'listarcategorias',
+      pathMatch: 'full'
+
+  },
+  {
     path: 'listarcategorias',
     component: ListarCategoriasComponent
   },

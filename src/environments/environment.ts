@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  url:'https://admin.bonding.social/api/',
+  link:'https://admin.bonding.social/img/',
+ mapboxkey: 'pk.eyJ1IjoicmF5bmllcjE4IiwiYSI6ImNraWt0MG96cTBjeTAyeXFtbGZia2gwN3IifQ.ZFwgi9n9DvTyvDZs9A6BQQ'
 };
 
 /*
