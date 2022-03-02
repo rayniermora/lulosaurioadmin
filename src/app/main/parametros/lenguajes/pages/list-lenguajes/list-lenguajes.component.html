@@ -1,1 +1,31 @@
-<p>list-lenguajes works!</p>
+<div class="card striped-tabled-with-hover">
+  <div class="card-header d-flex justify-content-between">
+    <div>
+      <h4 class="card-title">Etiquetas</h4>
+      <p class="card-category">Listado de Etiquetas Disponibles</p>
+    </div>
+    <button type="button" class="align-self-start btn btn-fill btn-success" routerLink="/main/parametros/form-lenguajes">AGREGAR</button>
+  </div>
+  <div class="card-content table-responsive table-full-width p-3">
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th class="text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lenguaje of lenguajes">
+          <td>{{lenguaje.id}}</td>
+          <td>{{lenguaje.nombre}}</td>
+          <td class="text-right">
+            <a class="btn btn-link btn-warning" (click)="updateLenguaje(lenguaje)">Editar <i class="fa fa-edit"></i></a>
+            <a class="btn btn-link btn-darnger" >Eliminar <i class="fa fa-times"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

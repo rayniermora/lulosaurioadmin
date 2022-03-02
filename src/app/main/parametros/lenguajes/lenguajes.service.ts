@@ -13,5 +13,17 @@ export class LenguajesService {
     return this._http.get(environment.url + 'listlenguajes');
   }
 
+  listLenguaje(id:string){
+    return this._http.get( environment.url + 'listlenguaje/' + id );
+  }
+
+  saveLenguaje(data:any){
+    return this._http.post( environment.url + 'listlenguaje', data );
+  }
+
+  updateLenguaje(data:any){
+    return this._http.post( environment.url + 'editlenguajes', data)
+  }
+
 
 }

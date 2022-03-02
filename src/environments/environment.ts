@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  // url:'http://6da8-2800-e2-5980-175f-c830-85b8-f114-c2ed.ngrok.io/api/',
+  // link:'http://6da8-2800-e2-5980-175f-c830-85b8-f114-c2ed.ngrok.io/img/',
   url:'http://luloback.test/api/',
   link:'http://luloback.test/img/',
  mapboxkey: 'pk.eyJ1IjoicmF5bmllcjE4IiwiYSI6ImNraWt0MG96cTBjeTAyeXFtbGZia2gwN3IifQ.ZFwgi9n9DvTyvDZs9A6BQQ'

@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <div>
+      <h4 class="card-title">Datos de Etiquetas</h4>
+      <p class="card-category">
+        <!-- {{ model?.id ? 'Actualizar' : 'Agregar' }} Categoria -->
+      </p>
+    </div>
+    <button type="button" class="align-self-start btn btn-success" routerLink="/main/parametros/list-sub-categorias">CANCELAR</button>
+  </div>
+  <div class="card-content p-3">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+      <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+      <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Enviar</button>
+    </form>
+  </div>
+</div>

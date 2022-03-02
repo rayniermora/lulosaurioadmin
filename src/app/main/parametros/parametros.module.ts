@@ -12,6 +12,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListCategoriaHijaComponent } from './categoria-hija/pages/list-categoria-hija/list-categoria-hija.component';
+import { FormCategoriaHijaComponent } from './categoria-hija/pages/form-categoria-hija/form-categoria-hija.component';
+import { FormEtiquetaComponent } from './etiquetas/pages/form-etiqueta/form-etiqueta.component';
+import { ListEtiquetaComponent } from './etiquetas/pages/list-etiqueta/list-etiqueta.component';
+import { FormSubCategoriaComponent } from './sub-categoria/form-sub-categoria/form-sub-categoria.component';
+import { ListSubCategoriasComponent } from './sub-categoria/list-sub-categorias/list-sub-categorias.component';
+import { FormRolComponent } from './roles/pages/form-rol/form-rol.component';
+import { ListRolesComponent } from './roles/pages/list-roles/list-roles.component';
+import { FormTipoContenidoComponent } from './tipo-contenido/pages/form-tipo-contenido/form-tipo-contenido.component';
+import { ListTiposContenidosComponent } from './tipo-contenido/pages/list-tipos-contenidos/list-tipos-contenidos.component';
 
 
 
@@ -20,15 +30,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ListCategoriasComponent,
     FormCategoriasComponent,
     ListLenguajesComponent,
-    FormLenguajesComponent
+    FormLenguajesComponent,
+    ListCategoriaHijaComponent,
+    FormCategoriaHijaComponent,
+    FormEtiquetaComponent,
+    ListEtiquetaComponent,
+    FormSubCategoriaComponent,
+    ListSubCategoriasComponent,
+    ListRolesComponent,
+    FormRolComponent,
+    FormTipoContenidoComponent,
+    ListTiposContenidosComponent
   ],
   imports: [
     CommonModule,
     ParametrosRoutingModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatCardModule,
-    MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
     FormlyModule.forRoot({ extras: { lazyRender: true } }),

@@ -21,6 +21,10 @@ export class CategoriasService {
     return this._http.get( environment.url + 'listarcategoria/' + idcategoria )
   }
 
+  updateCategoria(data: any) {
+    return this._http.post( environment.url + 'actualizarcategoria', data)
+  }
+
 
 
 

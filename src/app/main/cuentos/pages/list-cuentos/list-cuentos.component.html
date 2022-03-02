@@ -1,0 +1,44 @@
+<div class="card striped-tabled-with-hover">
+  <div class="card-header d-flex justify-content-between">
+    <div>
+      <h4 class="card-title">Cuentos</h4>
+      <p class="card-category">Listado de Cuentos Disponibles</p>
+    </div>
+    <button type="button" class="align-self-start btn btn-fill btn-success" routerLink="/main/cuentos/form-cuento">AGREGAR</button>
+  </div>
+  <div class="card-content table-responsive table-full-width p-3">
+    <table class="table table-bigboy">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th >Imagen</th>
+          <th>sku</th>
+          <th>Título</th>
+          <th>Duración</th>
+          <th>Formato</th>
+          <th>Tipo contenido</th>
+          <th class="text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cuento of cuentos">
+          <td></td>
+          <td>
+            <div class="img-container">
+              <img src="../../assets/img/saurio.jpg" alt="...">
+            </div>
+          </td>
+          <td>{{cuento.sku}}</td>
+          <td>{{cuento.titulo}}</td>
+          <td>{{cuento.duracion}}</td>
+          <td>{{cuento.formato}}</td>
+          <td>{{cuento.tipo_contenido.nombre}}</td>
+          <td class="text-right">
+            <a class="btn btn-link btn-warning" >Editar <i class="fa fa-edit"></i></a>
+            <a class="btn btn-link btn-darnger" >Eliminar <i class="fa fa-times"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

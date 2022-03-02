@@ -1,0 +1,71 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <div>
+      <h4 class="card-title">Datos de Cuento</h4>
+      <p class="card-category">
+        {{ model?.id ? 'Actualizar' : 'Agregar' }} cuento
+      </p>
+    </div>
+    <button type="button" class="align-self-start btn btn-success" routerLink="/main/cuentos/list-cuentos">CANCELAR</button>
+  </div>
+  <div class="card-content p-3">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+            <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Enviar</button>
+
+        </div>
+        <div class="col-md-3">
+          <div class="card card-user ml-4">
+            <div class="card-header no-padding">
+              <div class="card-image">
+              </div>
+            </div>
+            <div class="card-body ">
+              <div class="author">
+                <a href="#">
+                  <img class="avatar border-gray" [src]="model.imagen_banner" alt="...">
+
+                </a>
+
+              </div>
+
+            </div>
+            <div class="card-footer ">
+              <div class="form-group">
+                <label class="form-label" for="">Banner</label>
+                <input #fotobanner (change)="banner(fotobanner)" type="file" name="imagen_banner">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card card-user ml-4">
+            <div class="card-header no-padding">
+              <div class="card-image">
+              </div>
+            </div>
+            <div class="card-body ">
+              <div class="author">
+                <audio controls>
+                  <source src="horse.ogg" type="audio/ogg">
+                  <source src="horse.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+                </audio>
+
+              </div>
+
+            </div>
+            <div class="card-footer ">
+              <div class="form-group">
+                <label class="form-label" for="">Audiolibro</label>
+                <input #audiolibro (change)="audioLibro(audiolibro)" type="file" name="audio">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

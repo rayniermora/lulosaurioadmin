@@ -19,6 +19,10 @@ const routes: Routes = [
       {
         path: 'parametros',
         loadChildren: () => import( './parametros/parametros.module').then( m => m.ParametrosModule )
+      },
+      {
+        path: 'cuentos',
+        loadChildren: () => import( './cuentos/cuentos.module').then( m => m.CuentosModule )
       }
     ]
   },

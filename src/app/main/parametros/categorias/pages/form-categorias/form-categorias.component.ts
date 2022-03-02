@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { LenguajesService } from '../../../lenguajes/lenguajes.service';
 import { CategoriasService } from '../../categorias.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-categorias',
@@ -13,7 +14,7 @@ import { CategoriasService } from '../../categorias.service';
 export class FormCategoriasComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});;
-  model = {};
+  model: any = {};
   fields: FormlyFieldConfig[] = [];
 
   lenguajes: [] = [];
@@ -74,17 +75,36 @@ export class FormCategoriasComponent implements OnInit {
   }
 
   onSubmit(model: any) {
+    const formulario = new FormData();
+    for (const key in model) {
+      if (Object.prototype.hasOwnProperty.call(model, key)) {
+        const element = model[key];
+        formulario.append(key,element);
+      }
+    }
     if( model.id ) {
-
+      this.categoriasSvc.updateCategoria(formulario).subscribe(
+        (res: any)=> {
+          this.response()
+        }
+      );
     }
     else {
       this.categoriasSvc.saveCategoria(model).subscribe(
         (res: any) => {
-          console.log('exito',res);
-
+          this.response()
         }
       );
     }
+  }
+
+  response() {
+    Swal.fire({
+      title: 'Éxito',
+      icon: 'success',
+      text: `Su registro ha sido ${ this.model['id'] ? 'actualizado' : 'creado' } satisfactoriamente!`
+    })
+    this.router.navigate(['/main/parametros/list-categorias'])
   }
 
 }
