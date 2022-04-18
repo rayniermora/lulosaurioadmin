@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { CategoriasService } from 'src/app/main/parametros/categorias/categorias.service';
 import { LenguajesService } from 'src/app/main/parametros/lenguajes/lenguajes.service';
 import { CuentosService } from '../cuentos.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-cuentos',
@@ -18,175 +18,73 @@ export class FormCuentosComponent implements OnInit {
   model: any = {};
   fields!: FormlyFieldConfig[];
 
-  categorias = []
-  lenguajes = []
-  categoriashijas = []
-  subcategorias = []
-  tiposcontenidos = []
-  contenidopago = [
-    {'value': 0, 'label': 'FREE'},
-    {'value': 1, 'label': 'PREMIUM'},
+  categorias : any = []
+  lenguajes: any = []
+  categoriashijas: any = []
+  subcategorias: any = []
+  tiposcontenidos: any = []
+  contenidopago: any = [
+    {'id': 0, 'nombre': 'FREE'},
+    {'id': 1, 'nombre': 'PREMIUM'},
   ]
+  imagen_cuento :any;
+  audio_cuento :any;
+  video_cuento :any;
+  id_cuento: any;
 
 
-
-  constructor( private router: Router,private cuentosSvc: CuentosService, private categoriasSvc: CategoriasService, private lenguajesSvc: LenguajesService ) { }
+  constructor(
+    private router: Router,
+    private cuentosSvc: CuentosService, 
+    private categoriasSvc: CategoriasService, 
+    private lenguajesSvc: LenguajesService,
+    private formbuild: FormBuilder,
+    public _activeRoute: ActivatedRoute ) {
+      this.id_cuento = (_activeRoute.snapshot.paramMap.get('id') != null) ? _activeRoute.snapshot.paramMap.get('id') : 0;
+     }
 
   async ngOnInit() {
+    this.crearFormulario();    
 
-    const res: any = await Promise.all([
-      this.categoriasSvc.listCategorias().toPromise(),
-      this.lenguajesSvc.listLenguajes().toPromise(),
-      this.cuentosSvc.listCategoriasHijas().toPromise(),
-      this.cuentosSvc.listSubCategorias().toPromise(),
-      this.cuentosSvc.listTipoContenido().toPromise()
-    ])
+    this.lenguajesSvc.listLenguajes().subscribe((data: any) => {
+      this.lenguajes = data;
+    });
+  }
 
-    this.categorias = res[0];
-    this.lenguajes = res[1];
-    this.categoriashijas = res[2];
-    this.subcategorias = res[3];
-    this.tiposcontenidos = res[4];
-
-    console.log(this.categorias);
-    console.log(this.lenguajes);
-    console.log(this.categoriashijas);
-    console.log(this.subcategorias);
-    console.log(this.tiposcontenidos);
-
-
-
-    this.fields = [
-
-      {
-        fieldGroupClassName: 'row',
-        fieldGroup: [
-          {
-            className: 'col-12 col-lg-6',
-            key: 'id_categoria',
-            type: 'select',
-            templateOptions: {
-              label: 'Categorias',
-              required: true,
-              options: this.categorias,
-              valueProp: 'id',
-              labelProp: 'nombre'
-            }
-          },
-          {
-            className: 'col-12 col-lg-6',
-            key: 'id_sub_categoria',
-            type: 'select',
-            templateOptions: {
-              label: 'Sub-Categorias',
-              required: true,
-              options: this.subcategorias,
-              valueProp: 'id',
-              labelProp: 'nombre'
-            }
-          },
-          {
-            className: 'col-12 col-lg-6',
-            key: 'id_categoria_hija',
-            type: 'select',
-            templateOptions: {
-              label: 'Categorias Hijas',
-              required: true,
-              options: this.categoriashijas,
-              valueProp: 'id',
-              labelProp: 'nombre'
-            }
-          },
-          {
-            className: 'col-12 col-lg-6',
-            key: 'id_lenguaje',
-            type: 'select',
-            templateOptions: {
-              label: 'Lenguajes',
-              required: true,
-              options: this.lenguajes,
-              valueProp: 'id',
-              labelProp: 'nombre'
-            }
-          },
-          {
-            className: 'col-12 col-lg-6',
-            key: 'id_tipo_contenido',
-            type: 'select',
-            templateOptions: {
-              label: 'Tipo Contenido',
-              required: true,
-              options: this.tiposcontenidos,
-              valueProp: 'id',
-              labelProp: 'nombre'
-            }
-          },
-          {
-            className: 'col-12 col-lg-6',
-            key: 'titulo',
-            type: 'input',
-            templateOptions: {
-              label: 'Titulo',
-              placeholder: '',
-              required: true
-            }
-          },
-          {
-            className: 'col-12 col-lg-6',
-            key: "sinopsis",
-            type: "textarea",
-            templateOptions: {
-              label: "Sinopsis",
-              placeholder: '',
-              required: true
-            },
-          },
-          {
-            className: 'col-12 col-lg-6',
-            key: "resumen",
-            type: "textarea",
-            templateOptions: {
-              label: "Resumen",
-              placeholder: '',
-              required: true
-            },
-          },
-          {
-            className: 'col-12 col-lg-6',
-            key: 'duracion',
-            type: 'input',
-            templateOptions: {
-              label: 'Duración',
-              placeholder: '',
-              required: true
-            }
-          },
-          {
-            className: 'col-12 col-lg-6',
-            key: 'contenido_pago',
-            type: 'select',
-            templateOptions: {
-              label: 'Contenido pago',
-              required: true,
-              options: this.contenidopago,
-              valueProp: 'value',
-              labelProp: 'label',
-            }
-          },
-
-        ],
-      },
-
-
-    ];
+  crearFormulario() {
+    this.form = this.formbuild.group({
+      id_lenguaje: new FormControl('',[Validators.required]),
+      id_categoria: new FormControl('',[Validators.required]),
+      id_sub_categoria: new FormControl('',[Validators.required]),
+      id_tipo_contenido: new FormControl('',[Validators.required]),
+      titulo: new FormControl('',[Validators.required]),
+      sinopsis: new FormControl('',[Validators.required]),
+      resumen: new FormControl('',[Validators.required]),
+      duracion: new FormControl('',[Validators.required]),
+      contenido_pago: new FormControl('',[Validators.required]),
+      imagen_banner: [''],
+      audio: [''],
+      texto: new FormControl('',[Validators.required]),
+      video_fondo: new FormControl('',[Validators.required])
+    });
   }
 
   banner(e: any){
-    this.model['imagen_banner'] = e.files[0];
+    if (e.target.files.length > 0) {
+      this.imagen_cuento = e.target.files[0];
+    }
   }
 
   audioLibro(e: any){
-    this.model['audio'] = e.files[0];
+    if (e.target.files.length > 0) {
+      this.audio_cuento = e.target.files[0];
+    }
+  }
+
+  videoCuento(e: any){
+    if (e.target.files.length > 0) {
+      this.audio_cuento = e.target.files[0];
+    }
   }
 
   getCuento(id: string) {
@@ -195,24 +93,53 @@ export class FormCuentosComponent implements OnInit {
     });
   }
 
-  onSubmit(model: any) {
-    console.log(model);
-    const formulario = new FormData();
-    for (const key in model) {
-      if (Object.prototype.hasOwnProperty.call(model, key)) {
-        const element = model[key];
-        formulario.append(key,element);
+  changeDropDownList( e:any ){
+    if (e.target.value != 0) {
+      this.categoriasSvc.listCategorias(e.target.value).subscribe(
+        (response:any) => {
+          this.categorias = response;
+        }
+      );
+  
+      this.cuentosSvc.listSubCategorias(e.target.value).subscribe(
+        (response:any) => {
+          this.subcategorias = response;
+        }
+      );
+  
+      this.cuentosSvc.listTipoContenido(e.target.value).subscribe(
+        (response:any) => {
+          this.tiposcontenidos = response;
+        }
+      ); 
+    } else {
+      this.categorias = [];
+      this.subcategorias = [];
+      this.tiposcontenidos = [];
+    }
+    
+  }
+
+  onSubmit() {
+    const frmCuento = new FormData();
+    frmCuento.append('id_cuento', this.id_cuento);
+
+    for (const item in this.form.value) {
+      if (item === 'imagen_banner') {
+        frmCuento.append(item, this.imagen_cuento);
+      } else if (item === 'audio') {
+        frmCuento.append(item, this.audio_cuento);
+      } else if (item === 'video_fondo') {
+        frmCuento.append(item, this.audio_cuento);
+      } else {
+        frmCuento.append(item, this.form.value[item]);
       }
     }
 
-    if( model.id ) {
-      // actualizar
-    }
-    else {
-      this.cuentosSvc.saveCuento(formulario).subscribe(data => {
-        this.response(data)
-      });
-    }
+    this.cuentosSvc.saveCuento(frmCuento).subscribe(data => {
+        // this.response(data)
+        console.log(data);
+    });
   }
 
 
@@ -223,7 +150,7 @@ export class FormCuentosComponent implements OnInit {
       icon: 'success',
       text: `Su registro ha sido ${ this.model['id'] ? 'actualizado' : 'creado' } satisfactoriamente!`
     })
-    this.router.navigate(['/main/cuentos/list-cuentos'])
+    // this.router.navigate(['/main/cuentos/list-cuentos'])
   }
 
 }

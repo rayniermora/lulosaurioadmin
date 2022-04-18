@@ -12,7 +12,7 @@ export class ImagenesPipe implements PipeTransform {
     console.log(img);
 
     if (!img) {
-      return '/assets/img/default_avatar.png'
+      return '/assets/img/saurio.png'
     }
 
     let url = environment.link;
@@ -24,7 +24,7 @@ export class ImagenesPipe implements PipeTransform {
       return url + 'img/fotos_docentes/' + img;
       break;
       default:
-        return '/assets/img/default_avatar.png'
+        return '/assets/img/saurio.png'
       break;
     }
 

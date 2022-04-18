@@ -4,25 +4,26 @@
       <h4 class="card-title">Cuentos</h4>
       <p class="card-category">Listado de Cuentos Disponibles</p>
     </div>
-    <button type="button" class="align-self-start btn btn-fill btn-success" routerLink="/main/cuentos/form-cuento">AGREGAR</button>
+    <button type="button" class="align-self-start btn btn-fill btn-success" routerLink="/main/cuentos/form-cuento/0">AGREGAR</button>
   </div>
   <div class="card-content table-responsive table-full-width p-3">
     <table class="table table-bigboy">
       <thead>
         <tr>
-          <th>#</th>
+          <!-- <th>#</th> -->
           <th >Imagen</th>
           <th>sku</th>
           <th>Título</th>
           <th>Duración</th>
           <th>Formato</th>
           <th>Tipo contenido</th>
+          <th>Idioma</th>
           <th class="text-right">Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let cuento of cuentos">
-          <td></td>
+          <!-- <td></td> -->
           <td>
             <div class="img-container">
               <img src="../../assets/img/saurio.jpg" alt="...">
@@ -33,6 +34,9 @@
           <td>{{cuento.duracion}}</td>
           <td>{{cuento.formato}}</td>
           <td>{{cuento.tipo_contenido.nombre}}</td>
+          <td>
+            <a class="btn btn-link btn-warning" data-toggle="modal" data-target="#exampleModal">Idioma <i class="fa fa-edit" (click)="listCuentoxIdioma(cuento.id_cuento)"></i></a>
+          </td>
           <td class="text-right">
             <a class="btn btn-link btn-warning" >Editar <i class="fa fa-edit"></i></a>
             <a class="btn btn-link btn-darnger" >Eliminar <i class="fa fa-times"></i></a>
@@ -40,5 +44,59 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cuentos por idioma</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-bigboy">
+            <thead>
+              <tr>
+                <th >Imagen</th>
+                <th>sku</th>
+                <th>Título</th>
+                <th>Duración</th>
+                <th>Formato</th>
+                <th>Tipo contenido</th>
+                <th>Idioma</th>
+                <th class="text-right">Acciones</th>
+              </tr>            
+            </thead>
+            <tbody>
+              <tr *ngFor="let idioma of cuentosxidioma">
+                <td>
+                  <div class="">
+                    <img src="../../assets/img/saurio.jpg" style="width: 50% !important;">
+                  </div>
+                </td>
+                <td>{{idioma.sku}}</td>
+                <td>{{idioma.titulo}}</td>
+                <td>{{idioma.duracion}}</td>
+                <td>{{idioma.formato}}</td>
+                <td>{{idioma.tipo_contenido.nombre}}</td>
+                <td>{{idioma.lenguaje.nombre}}</td>
+                <td>
+                  <a class="btn btn-link btn-warning" >Editar <i class="fa fa-edit"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <button type="button" class="btn btn-primary" (click)="editar($event)"  [routerLink]="['//main/cuentos/form-cuento', idCuento]">Crear cuento nuevo idioma</button>
+      </div>
+    </div>
   </div>
 </div>

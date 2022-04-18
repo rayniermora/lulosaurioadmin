@@ -10,11 +10,15 @@ export class CuentosService {
   constructor(private _http: HttpClient) {}
 
   listCuentos() {
-    return this._http.get( environment.url + 'listarcuentos' );
+    return this._http.get( environment.url + 'listarcuentos/1' );
   }
 
   listCuento(id:string) {
     return this._http.get( environment.url + 'listarcuento/' + id );
+  }
+
+  listCuentoxIdioma(id_cuento:string) {
+    return this._http.get( environment.url + 'listarcuentosdiferenteidioma/' + id_cuento );
   }
 
   saveCuento(data:any) {
@@ -22,12 +26,12 @@ export class CuentosService {
   }
 
 
-  listSubCategorias() {
-    return this._http.get( environment.url + 'listarsubcategorias')
+  listSubCategorias(id_lenguaje:any) {
+    return this._http.get( environment.url + 'listarsubcategorias/' + id_lenguaje)
   }
 
-  listTipoContenido() {
-    return this._http.get( environment.url + 'listartipocontenido')
+  listTipoContenido(id_lenguaje:any) {
+    return this._http.get( environment.url + 'listartipocontenido/' + id_lenguaje)
   }
 
   listCategoriasHijas() {

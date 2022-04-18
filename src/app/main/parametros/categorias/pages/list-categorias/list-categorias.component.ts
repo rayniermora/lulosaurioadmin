@@ -1,6 +1,7 @@
 import {  Component,  OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoriasService } from '../../categorias.service';
+import { LenguajesService } from 'src/app/main/parametros/lenguajes/lenguajes.service';
 
 @Component({
   selector: 'app-list-categorias',
@@ -10,25 +11,42 @@ import { CategoriasService } from '../../categorias.service';
 export class ListCategoriasComponent implements OnInit {
 
   categorias:any [] = [];
+  lenguajes : any;
 
-  constructor( private categoriasSvc: CategoriasService, private router: Router ) { }
+  constructor(
+    private categoriasSvc: CategoriasService, 
+    private lenguajesSvc: LenguajesService,
+    private router: Router ) { }
 
   ngOnInit() {
-    this.listarCategorias()
+    this.listarIdioma();
   }
 
-  listarCategorias() {
-    this.categoriasSvc.listCategorias().subscribe(
+  listarCategorias(id_lenguaje:any) {    
+    this.categoriasSvc.listCategorias(id_lenguaje).subscribe(
       (res: any) => {
-        console.log(res);
         this.categorias = res;
-
       }
     );
   }
 
+  listarIdioma() {
+    this.lenguajesSvc.listLenguajes().subscribe((data: any) => {
+      this.lenguajes = data;
+    });
+  }
+
   updateCategoria(categoria: any) {
     this.router.navigate(['/main/parametros/form-categoria', {id: categoria.id}]);
+  }
+
+  changeDropDownList(e:any) {
+    let id = e.target.value;
+    if (e.target.value =! 0) {
+      this.listarCategorias(id);
+    } else {
+      this.categorias = [];
+    }
   }
 
 }

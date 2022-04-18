@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CuentosService } from '../cuentos.service';
+declare var $: any;
 
 @Component({
   selector: 'app-list-cuentos',
@@ -8,9 +10,11 @@ import { CuentosService } from '../cuentos.service';
 })
 export class ListCuentosComponent implements OnInit {
 
-  constructor( private cuentosSvc: CuentosService ) { }
+  constructor( private cuentosSvc: CuentosService, private router: Router ) { }
 
   cuentos:any [] = [];
+  cuentosxidioma: any [] = [];
+  idCuento: any;
 
   ngOnInit(): void {
     this.listCuentos();
@@ -19,13 +23,25 @@ export class ListCuentosComponent implements OnInit {
   listCuentos() {
     this.cuentosSvc.listCuentos().subscribe(
       (res: any) => {
-        console.log(res);
         this.cuentos = res;
-
       }
     );
   }
 
+  listCuentoxIdioma(id_cuento: any){
+    this.idCuento = id_cuento;
+    this.cuentosSvc.listCuentoxIdioma(id_cuento).subscribe(
+      (response: any) => {
+        console.log(response);
+        
+        this.cuentosxidioma = response;
+    });
+  }
 
+  editar(e:any)
+  {
+    $('div#exampleModal').modal('hide');
+    // this.router.navigate(['form-cuentos']);
+  }
 
 }

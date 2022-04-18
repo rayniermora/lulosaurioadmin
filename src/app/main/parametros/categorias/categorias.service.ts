@@ -13,8 +13,8 @@ export class CategoriasService {
     return this._http.post( environment.url + 'crearcategoria', data )
   }
 
-  listCategorias() {
-    return this._http.get( environment.url + 'listarcategorias' )
+  listCategorias(id_lenguaje:any) {
+    return this._http.get( environment.url + 'listarcategorias/' + id_lenguaje )
   }
 
   listCategoria(idcategoria: string) {

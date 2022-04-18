@@ -13,7 +13,7 @@ const routes: Routes = [
     component: ListCuentosComponent
   },
   {
-    path: 'form-cuento',
+    path: 'form-cuento/:id',
     component: FormCuentosComponent
   }
 

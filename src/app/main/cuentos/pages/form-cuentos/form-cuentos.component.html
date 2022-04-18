@@ -9,59 +9,155 @@
     <button type="button" class="align-self-start btn btn-success" routerLink="/main/cuentos/list-cuentos">CANCELAR</button>
   </div>
   <div class="card-content p-3">
-    <form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-md-6 col-sm-6">
-            <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
-            <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Enviar</button>
+        <div class="col-12">
+          <div class="form-row">
+            <div class="col-md-4 col-sm-4">
+              <label for="id_lenguaje">IDIOMA *</label>
+              <select class="form-control" formControlName="id_lenguaje" (change)="changeDropDownList($event)" >
+                <option *ngFor="let item of lenguajes" value="{{item.id}}">{{item.nombre}}</option>
+              </select>
+            </div>
 
-        </div>
-        <div class="col-md-3">
-          <div class="card card-user ml-4">
-            <div class="card-header no-padding">
-              <div class="card-image">
+            <div class="col-md-4 col-sm-4">
+              <label for="id_categoria">CATEOGRIA *</label>
+              <select class="form-control" formControlName="id_categoria" >
+                <option *ngFor="let item of categorias" value="{{item.id}}">{{item.nombre}}</option>
+              </select>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+              <label for="id_sub_categoria">SUB-CATEOGRIA *</label>
+              <select class="form-control" formControlName="id_sub_categoria" >
+                <option *ngFor="let item of subcategorias" value="{{item.id}}">{{item.nombre}}</option>
+              </select>
+            </div>           
+  
+          </div>
+          
+          <div class="form-row">
+            <div class="col-md-4 col-sm-4">
+              <label for="id_tipo_contenido">TIPO DE CONTENIDO *</label>
+              <select class="form-control" formControlName="id_tipo_contenido" >
+                <option *ngFor="let item of tiposcontenidos" value="{{item.id}}">{{item.nombre}}</option>
+              </select>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+              <label for="titulo">TITULO *</label>
+              <input class="form-control" type="text" formControlName="titulo">
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+              <label for="duracion">DURACION *</label>
+              <input class="form-control" type="text" formControlName="duracion">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="col-md-4 col-sm-4">
+              <label for="contenido_pago">CONTENIDO PAGO *</label>
+              <select class="form-control" formControlName="contenido_pago" >
+                <option *ngFor="let item of contenidopago" value="{{item.id}}">{{item.nombre}}</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="col-md-4 col-sm-4">
+              <label for="sinopsis">SINOPSIS *</label>
+              <textarea class="form-control" formControlName="sinopsis" cols="30" rows="5"></textarea>
+            </div>
+  
+            <div class="col-md-4 col-sm-4">
+              <label for="resumen">RESUMEN *</label>
+              <textarea class="form-control" formControlName="resumen" cols="30" rows="5"></textarea>
+            </div>
+  
+            <div class="col-md-4 col-sm-4">
+              <label for="texto">TEXTO *</label>
+              <textarea class="form-control" formControlName="texto" cols="30" rows="5"></textarea>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="col-md-4 col-sm-4">
+              <div class="card card-user">
+                <div class="card-header no-padding">
+                  <div class="card-image">
+                  </div>
+                </div>
+                <div class="card-body ">
+                  <div class="author">
+                    <a href="#">
+                      <img class="avatar border-gray" [src]=" imagen_cuento | imageSanitizer" alt="...">
+                    </a>
+                  </div>
+                </div>
+                <div class="card-footer ">
+                  <div class="form-group">
+                    <label class="form-label" for="imagen_banner">Banner</label>
+                    <input formControlName="imagen_banner" (change)="banner($event)" type="file">
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="card-body ">
-              <div class="author">
-                <a href="#">
-                  <img class="avatar border-gray" [src]="model.imagen_banner" alt="...">
-
-                </a>
-
+    
+            <div class="col-md-4 col-sm-4">
+              <div class="card card-user">
+                <div class="card-header no-padding">
+                  <div class="card-image">
+                  </div>
+                </div>
+                <div class="card-body ">
+                  <div class="author">
+                    <audio controls>
+                      <source src="horse.ogg" type="audio/ogg">
+                      <source src="horse.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio>
+                  </div>
+    
+                </div>
+                <div class="card-footer ">
+                  <div class="form-group">
+                    <label class="form-label" for="">Audiolibro</label>
+                    <input formControlName="audio" (change)="audioLibro($event)" type="file">
+                  </div>
+                </div>
               </div>
-
             </div>
-            <div class="card-footer ">
-              <div class="form-group">
-                <label class="form-label" for="">Banner</label>
-                <input #fotobanner (change)="banner(fotobanner)" type="file" name="imagen_banner">
+    
+            <div class="col-md-4 col-sm-4">
+              <div class="card card-user">
+                <div class="card-header no-padding">
+                  <div class="card-image">
+                  </div>
+                </div>
+                <div class="card-body ">
+                  <div class="author">
+                    <audio controls>
+                      <source src="horse.ogg" type="audio/ogg">
+                      <source src="horse.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio>
+                  </div>
+    
+                </div>
+                <div class="card-footer ">
+                  <div class="form-group">
+                    <label class="form-label" for="">Video</label>
+                    <input formControlName="video_fondo" (change)="videoCuento($event)" type="file">
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card card-user ml-4">
-            <div class="card-header no-padding">
-              <div class="card-image">
-              </div>
-            </div>
-            <div class="card-body ">
-              <div class="author">
-                <audio controls>
-                  <source src="horse.ogg" type="audio/ogg">
-                  <source src="horse.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-                </audio>
 
-              </div>
-
-            </div>
-            <div class="card-footer ">
-              <div class="form-group">
-                <label class="form-label" for="">Audiolibro</label>
-                <input #audiolibro (change)="audioLibro(audiolibro)" type="file" name="audio">
-              </div>
+          <div class="form-row">
+            <div class="col-md-4 col-md-4">
+              <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Enviar</button>
             </div>
           </div>
         </div>
