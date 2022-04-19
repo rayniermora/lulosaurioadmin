@@ -32,10 +32,10 @@
               <select class="form-control" formControlName="id_sub_categoria" >
                 <option *ngFor="let item of subcategorias" value="{{item.id}}">{{item.nombre}}</option>
               </select>
-            </div>           
-  
+            </div>
+
           </div>
-          
+
           <div class="form-row">
             <div class="col-md-4 col-sm-4">
               <label for="id_tipo_contenido">TIPO DE CONTENIDO *</label>
@@ -54,7 +54,7 @@
               <input class="form-control" type="text" formControlName="duracion">
             </div>
           </div>
-          
+
           <div class="form-row">
             <div class="col-md-4 col-sm-4">
               <label for="contenido_pago">CONTENIDO PAGO *</label>
@@ -63,24 +63,24 @@
               </select>
             </div>
           </div>
-          
+
           <div class="form-row">
             <div class="col-md-4 col-sm-4">
               <label for="sinopsis">SINOPSIS *</label>
               <textarea class="form-control" formControlName="sinopsis" cols="30" rows="5"></textarea>
             </div>
-  
+
             <div class="col-md-4 col-sm-4">
               <label for="resumen">RESUMEN *</label>
               <textarea class="form-control" formControlName="resumen" cols="30" rows="5"></textarea>
             </div>
-  
-            <div class="col-md-4 col-sm-4">
+
+            <!-- <div class="col-md-4 col-sm-4">
               <label for="texto">TEXTO *</label>
               <textarea class="form-control" formControlName="texto" cols="30" rows="5"></textarea>
-            </div>
+            </div> -->
           </div>
-          
+
           <div class="form-row">
             <div class="col-md-4 col-sm-4">
               <div class="card card-user">
@@ -103,7 +103,7 @@
                 </div>
               </div>
             </div>
-    
+
             <div class="col-md-4 col-sm-4">
               <div class="card card-user">
                 <div class="card-header no-padding">
@@ -111,14 +111,14 @@
                   </div>
                 </div>
                 <div class="card-body ">
-                  <div class="author">
+                  <div class="">
                     <audio controls>
                       <source src="horse.ogg" type="audio/ogg">
                       <source src="horse.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                     </audio>
                   </div>
-    
+
                 </div>
                 <div class="card-footer ">
                   <div class="form-group">
@@ -128,7 +128,7 @@
                 </div>
               </div>
             </div>
-    
+
             <div class="col-md-4 col-sm-4">
               <div class="card card-user">
                 <div class="card-header no-padding">
@@ -136,14 +136,14 @@
                   </div>
                 </div>
                 <div class="card-body ">
-                  <div class="author">
-                    <audio controls>
+                  <div class="">
+                    <video controls>
                       <source src="horse.ogg" type="audio/ogg">
                       <source src="horse.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
-                    </audio>
+                    </video>
                   </div>
-    
+
                 </div>
                 <div class="card-footer ">
                   <div class="form-group">
@@ -155,13 +155,22 @@
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="col-md-4 col-md-4">
-              <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Enviar</button>
-            </div>
-          </div>
         </div>
       </div>
+
     </form>
+
+      <div class="row">
+        <div class="col-md-12">
+          <ckeditor [(ngModel)]="contenido" [ngModelOptions]="{standalone: true}" [editor]="Editor" [data]="editorData" [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ] }" debounce="500"></ckeditor>
+        </div>
+      </div>
+      <br>
+      <div class="form-row">
+        <div class="col-md-4 col-md-4">
+          <button type="button" (click)="onSubmit()" [disabled]="!form.valid" class="btn btn-primary">Enviar</button>
+        </div>
+      </div>
+
   </div>
 </div>

@@ -1,0 +1,79 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <div>
+      <h4 class="card-title">Asignar etiquetas a cuentos</h4>
+      <p class="card-category">
+        <!-- {{ model?.id ? 'Actualizar' : 'Agregar' }} Categoria -->
+      </p>
+    </div>
+    <button type="button" class="align-self-start btn btn-success" routerLink="/main/cuentos/list-cuentos">CANCELAR</button>
+  </div>
+  <!-- <div class="card-content p-3">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+      <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+      <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Seleccionar</button>
+    </form>
+  </div> -->
+  <form style="padding: 10px;" >
+    <div class="form-group" >
+
+      <select name="eeee" [(ngModel)]="id_etiquetas" style="height:50px" (change)="onSubmit($event)"  class="form-control" id="etix">
+        <option *ngFor="let etiqueta of etiquetas; let i = index" [value]="i">{{etiqueta.nombre}}</option>
+
+      </select>
+
+    </div>
+    <!-- <button type="submit"  class="btn btn-primary">Seleccionar</button> -->
+
+  </form>
+</div>
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <div>
+      <h4 class="card-title">Etiquetas Seleccionadas</h4>
+      <p class="card-category">
+        <!-- {{ model?.id ? 'Actualizar' : 'Agregar' }} Categoria -->
+      </p>
+    </div>
+
+  </div>
+  <div class="card-content p-3">
+    <span *ngFor="let item of etiquetasseleccionadas; let i = index" class="btn btn-link btn-info" >{{item.nombre}}
+      <i class="fa fa-close" (click)="deleteEtiqueta(i)"></i></span>
+  </div>
+  <div class="card-footer">
+    <button *ngIf="habilitaenviar" type="button" (click)="enviar()" class="btn btn-info">Enviar</button>
+  </div>
+</div>
+
+
+<div class="card striped-tabled-with-hover">
+  <div class="card-header d-flex justify-content-between">
+    <div>
+      <h4 class="card-title">Etiquetas</h4>
+      <p class="card-category">Listado de Etiquetas asignados</p>
+    </div>
+
+  </div>
+  <div class="card-content table-responsive table-full-width p-3">
+    <table class="table table-bigboy">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th >nombre</th>
+          <th class="text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let etex of etiquetasexistentes">
+          <td>{{etex.id}}</td>
+          <td>{{etex.etiqueta.nombre}}</td>
+          <td class="text-right">
+            <a class="btn btn-link btn-darnger" (click)="eliminarEtiquetaSeleccionada(etex.id)"><i class="fa fa-times"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

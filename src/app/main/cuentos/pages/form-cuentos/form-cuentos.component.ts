@@ -6,6 +6,7 @@ import { LenguajesService } from 'src/app/main/parametros/lenguajes/lenguajes.se
 import { CuentosService } from '../cuentos.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-form-cuentos',
@@ -17,6 +18,8 @@ export class FormCuentosComponent implements OnInit {
   form: FormGroup = new FormGroup({});;
   model: any = {};
   fields!: FormlyFieldConfig[];
+
+  public Editor = ClassicEditorBuild;
 
   categorias : any = []
   lenguajes: any = []
@@ -31,12 +34,14 @@ export class FormCuentosComponent implements OnInit {
   audio_cuento :any;
   video_cuento :any;
   id_cuento: any;
+  contenido: any;
+  public editorData = '';
 
 
   constructor(
     private router: Router,
-    private cuentosSvc: CuentosService, 
-    private categoriasSvc: CategoriasService, 
+    private cuentosSvc: CuentosService,
+    private categoriasSvc: CategoriasService,
     private lenguajesSvc: LenguajesService,
     private formbuild: FormBuilder,
     public _activeRoute: ActivatedRoute ) {
@@ -44,7 +49,7 @@ export class FormCuentosComponent implements OnInit {
      }
 
   async ngOnInit() {
-    this.crearFormulario();    
+    this.crearFormulario();
 
     this.lenguajesSvc.listLenguajes().subscribe((data: any) => {
       this.lenguajes = data;
@@ -64,7 +69,6 @@ export class FormCuentosComponent implements OnInit {
       contenido_pago: new FormControl('',[Validators.required]),
       imagen_banner: [''],
       audio: [''],
-      texto: new FormControl('',[Validators.required]),
       video_fondo: new FormControl('',[Validators.required])
     });
   }
@@ -100,29 +104,32 @@ export class FormCuentosComponent implements OnInit {
           this.categorias = response;
         }
       );
-  
+
       this.cuentosSvc.listSubCategorias(e.target.value).subscribe(
         (response:any) => {
           this.subcategorias = response;
         }
       );
-  
+
       this.cuentosSvc.listTipoContenido(e.target.value).subscribe(
         (response:any) => {
           this.tiposcontenidos = response;
         }
-      ); 
+      );
     } else {
       this.categorias = [];
       this.subcategorias = [];
       this.tiposcontenidos = [];
     }
-    
+
   }
 
   onSubmit() {
+    console.log();
+
     const frmCuento = new FormData();
     frmCuento.append('id_cuento', this.id_cuento);
+    frmCuento.append('texto', this.contenido);
 
     for (const item in this.form.value) {
       if (item === 'imagen_banner') {
@@ -150,7 +157,7 @@ export class FormCuentosComponent implements OnInit {
       icon: 'success',
       text: `Su registro ha sido ${ this.model['id'] ? 'actualizado' : 'creado' } satisfactoriamente!`
     })
-    // this.router.navigate(['/main/cuentos/list-cuentos'])
+    this.router.navigate(['/main/cuentos/list-cuentos'])
   }
 
 }

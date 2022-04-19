@@ -22,6 +22,10 @@ import { FormRolComponent } from './roles/pages/form-rol/form-rol.component';
 import { ListRolesComponent } from './roles/pages/list-roles/list-roles.component';
 import { FormTipoContenidoComponent } from './tipo-contenido/pages/form-tipo-contenido/form-tipo-contenido.component';
 import { ListTiposContenidosComponent } from './tipo-contenido/pages/list-tipos-contenidos/list-tipos-contenidos.component';
+import { FormUsuarioComponent } from './usuarios/pages/form-usuario/form-usuario.component';
+import { ListUsuariosComponent } from './usuarios/pages/list-usuarios/list-usuarios.component';
+import { ListTipoSuscripcionComponent } from './tipo-suscripcion/pages/list-tipo-suscripcion/list-tipo-suscripcion.component';
+import { FormTipoSuscripcionComponent } from './tipo-suscripcion/pages/form-tipo-suscripcion/form-tipo-suscripcion.component';
 
 
 
@@ -40,7 +44,11 @@ import { ListTiposContenidosComponent } from './tipo-contenido/pages/list-tipos-
     ListRolesComponent,
     FormRolComponent,
     FormTipoContenidoComponent,
-    ListTiposContenidosComponent
+    ListTiposContenidosComponent,
+    FormUsuarioComponent,
+    ListUsuariosComponent,
+    ListTipoSuscripcionComponent,
+    FormTipoSuscripcionComponent
   ],
   imports: [
     CommonModule,

@@ -15,13 +15,14 @@ export class ListCuentosComponent implements OnInit {
   cuentos:any [] = [];
   cuentosxidioma: any [] = [];
   idCuento: any;
+  idioma = 1;
 
   ngOnInit(): void {
     this.listCuentos();
   }
 
   listCuentos() {
-    this.cuentosSvc.listCuentos().subscribe(
+    this.cuentosSvc.listCuentos(this.idioma).subscribe(
       (res: any) => {
         this.cuentos = res;
       }
@@ -33,10 +34,18 @@ export class ListCuentosComponent implements OnInit {
     this.cuentosSvc.listCuentoxIdioma(id_cuento).subscribe(
       (response: any) => {
         console.log(response);
-        
+
         this.cuentosxidioma = response;
     });
   }
+  asignarEtiquetas(cuento: any){
+    this.router.navigate(['/main/cuentos/asignar-etiquetas', {id: cuento.id}]);
+  }
+
+  asignarCategorias(cuento: any){
+    this.router.navigate(['/main/cuentos/asignar-categorias-hijas', {id: cuento.id}]);
+  }
+
 
   editar(e:any)
   {

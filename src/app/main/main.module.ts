@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainRoutingModule } from './main-routing.module';
 import { ParametrosComponent } from './parametros/parametros.component';
 import { CuentosComponent } from './cuentos/cuentos.component';
+import { SuscriptoresComponent } from './suscriptores/suscriptores.component';
 
 
 
@@ -12,7 +13,8 @@ import { CuentosComponent } from './cuentos/cuentos.component';
   declarations: [
     DashboardComponent,
     ParametrosComponent,
-    CuentosComponent
+    CuentosComponent,
+    SuscriptoresComponent
   ],
   imports: [
     CommonModule,

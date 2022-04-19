@@ -18,7 +18,7 @@ export class LenguajesService {
   }
 
   saveLenguaje(data:any){
-    return this._http.post( environment.url + 'listlenguaje', data );
+    return this._http.post( environment.url + 'savelenguaje', data );
   }
 
   updateLenguaje(data:any){

@@ -23,9 +23,13 @@ export class FormCategoriasComponent implements OnInit {
     this.getLenguajes()
   }
 
-  ngOnInit() {
+  async ngOnInit() {
 
-    setTimeout(() => {
+    const res: any = await Promise.all([
+      this.lenguajeSvc.listLenguajes().toPromise()
+    ])
+
+    this.lenguajes = res[0];
       this.fields = [
         {
           key: 'nombre',
@@ -49,7 +53,7 @@ export class FormCategoriasComponent implements OnInit {
         }
       ];
 
-    }, 1500);
+
 
 
     if( this.route.snapshot.params['id'] ) {

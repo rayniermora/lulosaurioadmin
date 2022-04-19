@@ -2,3 +2,7 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+#formly_2_select_id_etiqueta_0{
+  height: 200px !important;
+}
+

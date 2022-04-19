@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  url:'https://admin.lulosaurio.com/api/',
+  link:'https://admin.lulosaurio.com/img/',
 };

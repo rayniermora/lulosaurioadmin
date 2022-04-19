@@ -8,12 +8,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormlyModule } from '@ngx-formly/core';
 import { MainPipeModule } from '../../pipes/mainPipe.module';
+import { AsignarEtiquetasComponent } from './pages/asignar-etiquetas/asignar-etiquetas.component';
+import { AsignarCategoriasHijasComponent } from './pages/asignar-categorias-hijas/asignar-categorias-hijas.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 @NgModule({
   declarations: [
     ListCuentosComponent,
-    FormCuentosComponent
+    FormCuentosComponent,
+    AsignarEtiquetasComponent,
+    AsignarCategoriasHijasComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +27,8 @@ import { MainPipeModule } from '../../pipes/mainPipe.module';
     ReactiveFormsModule,
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
     FormlyBootstrapModule,
-    MainPipeModule
+    MainPipeModule,
+    CKEditorModule
   ]
 })
 export class CuentosModule { }

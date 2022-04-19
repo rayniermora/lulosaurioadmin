@@ -14,6 +14,10 @@ import { FormSubCategoriaComponent } from './sub-categoria/form-sub-categoria/fo
 import { ListSubCategoriasComponent } from './sub-categoria/list-sub-categorias/list-sub-categorias.component';
 import { FormTipoContenidoComponent } from './tipo-contenido/pages/form-tipo-contenido/form-tipo-contenido.component';
 import { ListTiposContenidosComponent } from './tipo-contenido/pages/list-tipos-contenidos/list-tipos-contenidos.component';
+import { FormTipoSuscripcionComponent } from './tipo-suscripcion/pages/form-tipo-suscripcion/form-tipo-suscripcion.component';
+import { ListTipoSuscripcionComponent } from './tipo-suscripcion/pages/list-tipo-suscripcion/list-tipo-suscripcion.component';
+import { FormUsuarioComponent } from './usuarios/pages/form-usuario/form-usuario.component';
+import { ListUsuariosComponent } from './usuarios/pages/list-usuarios/list-usuarios.component';
 
 const routes: Routes = [
 
@@ -72,6 +76,22 @@ const routes: Routes = [
   {
     path: 'list-tipos-contenidos',
     component: ListTiposContenidosComponent
+  },
+  {
+    path: 'list-usuarios',
+    component: ListUsuariosComponent
+  },
+  {
+    path: 'form-usuario',
+    component: FormUsuarioComponent
+  },
+  {
+    path: 'list-tipos-suscripciones',
+    component: ListTipoSuscripcionComponent
+  },
+  {
+    path: 'form-tipo-suscripcion',
+    component: FormTipoSuscripcionComponent
   }
 
 

@@ -23,6 +23,10 @@ const routes: Routes = [
       {
         path: 'cuentos',
         loadChildren: () => import( './cuentos/cuentos.module').then( m => m.CuentosModule )
+      },
+      {
+        path: 'suscriptores',
+        loadChildren: () => import( './suscriptores/suscriptores.module').then( m => m.SuscriptoresModule )
       }
     ]
   },
