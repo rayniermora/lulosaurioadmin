@@ -53,4 +53,8 @@ export class ListCuentosComponent implements OnInit {
     // this.router.navigate(['form-cuentos']);
   }
 
+  cerrarModal() {
+    this.cuentosxidioma = [];
+  }
+
 }

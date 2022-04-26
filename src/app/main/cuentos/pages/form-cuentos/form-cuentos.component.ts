@@ -144,8 +144,8 @@ export class FormCuentosComponent implements OnInit {
     }
 
     this.cuentosSvc.saveCuento(frmCuento).subscribe(data => {
-        // this.response(data)
-        console.log(data);
+        this.response(data)
+        // console.log(data);
     });
   }
 
@@ -155,7 +155,7 @@ export class FormCuentosComponent implements OnInit {
     Swal.fire({
       title: 'Éxito',
       icon: 'success',
-      text: `Su registro ha sido ${ this.model['id'] ? 'actualizado' : 'creado' } satisfactoriamente!`
+      text: `Su registro ha sido creado satisfactoriamente!`
     })
     this.router.navigate(['/main/cuentos/list-cuentos'])
   }
