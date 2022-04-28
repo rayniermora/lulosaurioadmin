@@ -87,7 +87,7 @@ export class FormCuentosComponent implements OnInit {
 
   videoCuento(e: any){
     if (e.target.files.length > 0) {
-      this.audio_cuento = e.target.files[0];
+      this.video_cuento = e.target.files[0];
     }
   }
 
@@ -137,7 +137,7 @@ export class FormCuentosComponent implements OnInit {
       } else if (item === 'audio') {
         frmCuento.append(item, this.audio_cuento);
       } else if (item === 'video_fondo') {
-        frmCuento.append(item, this.audio_cuento);
+        frmCuento.append(item, this.video_cuento);
       } else {
         frmCuento.append(item, this.form.value[item]);
       }
