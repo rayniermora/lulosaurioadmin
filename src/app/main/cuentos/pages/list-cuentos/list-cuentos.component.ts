@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { CuentosService } from '../cuentos.service';
 declare var $: any;
 
@@ -58,11 +59,25 @@ export class ListCuentosComponent implements OnInit {
   }
 
   eliminarCuento(cuento: any) {
-    this.cuentosSvc.deleteCuento(cuento).subscribe(
-      (response: any) => {
-        this.listCuentos();
+    Swal.fire({
+      icon: 'question',
+      title: 'Confirmar',
+      text: 'Realmente deseas eliminar éste registro?',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      reverseButtons: true
+    }).then((res: any) => {
+      if( res ) {
+        this.cuentosSvc.deleteCuento(cuento).subscribe(() => {
+          Swal.fire({
+            title: 'Éxito',
+            icon: 'success',
+            text: `Su registro ha sido eliminado satisfactoriamente!`
+          })
+          this.listCuentos();
+        });
       }
-    );
+    })
   }
 
 }

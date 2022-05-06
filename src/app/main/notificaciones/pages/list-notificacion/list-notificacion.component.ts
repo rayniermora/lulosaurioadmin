@@ -38,6 +38,14 @@ export class ListNotificacionComponent implements OnInit {
     );
   }
 
+  eliminarNotificacionPush(notificacion:any) {
+    this._notificacionService.eliminarNotificacion(notificacion).subscribe(
+      (response: any) => {
+        this.listarNotificaciones();
+      }
+    );
+  }
+
   response(data: any) {
     Swal.fire({
       title: 'Éxito',

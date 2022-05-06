@@ -20,4 +20,8 @@ export class NotificacionService {
   enviarNotificacion(data:any) {
     return this._httpClient.post( environment.url + 'enviarnotificacionpush', data );
   }
+
+  eliminarNotificacion(data:any) {
+    return this._httpClient.post( environment.url + 'eliminarnotificacionpush', data );
+  }
 }
