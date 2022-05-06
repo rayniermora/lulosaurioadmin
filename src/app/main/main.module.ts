@@ -6,6 +6,7 @@ import { MainRoutingModule } from './main-routing.module';
 import { ParametrosComponent } from './parametros/parametros.component';
 import { CuentosComponent } from './cuentos/cuentos.component';
 import { SuscriptoresComponent } from './suscriptores/suscriptores.component';
+import { NotificacionPushComponent } from './notificaciones/notificacion-push.component';
 
 
 
@@ -14,7 +15,8 @@ import { SuscriptoresComponent } from './suscriptores/suscriptores.component';
     DashboardComponent,
     ParametrosComponent,
     CuentosComponent,
-    SuscriptoresComponent
+    SuscriptoresComponent,
+    NotificacionPushComponent
   ],
   imports: [
     CommonModule,

@@ -27,6 +27,10 @@ const routes: Routes = [
       {
         path: 'suscriptores',
         loadChildren: () => import( './suscriptores/suscriptores.module').then( m => m.SuscriptoresModule )
+      },
+      {
+        path: 'notificaciones',
+        loadChildren: () => import( './notificaciones/notificacion-push.module').then( m => m.NotificacionPushModule )
       }
     ]
   },

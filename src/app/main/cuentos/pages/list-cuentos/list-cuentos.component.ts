@@ -57,4 +57,12 @@ export class ListCuentosComponent implements OnInit {
     this.cuentosxidioma = [];
   }
 
+  eliminarCuento(cuento: any) {
+    this.cuentosSvc.deleteCuento(cuento).subscribe(
+      (response: any) => {
+        this.listCuentos();
+      }
+    );
+  }
+
 }

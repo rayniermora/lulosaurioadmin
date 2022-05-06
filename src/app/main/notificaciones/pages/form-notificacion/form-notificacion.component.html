@@ -1,0 +1,34 @@
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <div>
+            <h4 class="card-title">Datos de Notificación</h4>
+            <p class="card-category">
+              Agregar Notificación
+            </p>
+          </div>
+          <button type="button" class="align-self-start btn btn-success" routerLink="/main/notificaciones/list-notificacion">CANCELAR</button>
+    </div>
+    
+    <div class="card-content p-3">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12">
+                            <label for="descripcion">DESCRIPCIÓN DE LA NOTIFICACIÓN *</label>
+                            <br>
+                            <span>Límite de 100 caracteres por descripción</span>
+                            <textarea class="form-control" formControlName="descripcion" cols="30" rows="5" maxlength="100"></textarea>
+                          </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-4 col-md-4">
+                          <button type="button" (click)="onSubmit()" [disabled]="!form.valid" class="btn btn-primary">Enviar</button>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

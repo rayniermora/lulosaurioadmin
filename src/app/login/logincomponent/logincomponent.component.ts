@@ -22,7 +22,7 @@ export class LogincomponentComponent implements OnInit {
         (res:any) => {
           if(res.user.datos.rol === 'ADMIN'){
             localStorage.setItem('_tokenlulo',res.access_token);
-            localStorage.setItem('_userlulo',JSON.stringify(res.user));
+            localStorage.setItem('_userlulo',JSON.stringify(res.user.datos));
             let hoy= new Date();
             hoy.setSeconds( 10800 );
             localStorage.setItem('expira',hoy.getTime().toString());

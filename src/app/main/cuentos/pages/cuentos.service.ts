@@ -58,4 +58,12 @@ export class CuentosService {
     return this._http.post( environment.url + 'eliminarhijacuento', data)
   }
 
+  deleteCuento(data:any) {
+    return this._http.post( environment.url + 'eliminarcuento', data)
+  }
+
+  editCuento(data:any) {
+    return this._http.post( environment.url + 'editarcuento', data)
+  }
+
 }
