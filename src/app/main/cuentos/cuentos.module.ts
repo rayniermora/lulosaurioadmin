@@ -11,6 +11,7 @@ import { MainPipeModule } from '../../pipes/mainPipe.module';
 import { AsignarEtiquetasComponent } from './pages/asignar-etiquetas/asignar-etiquetas.component';
 import { AsignarCategoriasHijasComponent } from './pages/asignar-categorias-hijas/asignar-categorias-hijas.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { EditCuentoComponent } from './pages/edit-cuento/edit-cuento.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     ListCuentosComponent,
     FormCuentosComponent,
     AsignarEtiquetasComponent,
-    AsignarCategoriasHijasComponent
+    AsignarCategoriasHijasComponent,
+    EditCuentoComponent
   ],
   imports: [
     CommonModule,

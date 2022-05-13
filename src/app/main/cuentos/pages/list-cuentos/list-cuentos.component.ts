@@ -34,8 +34,6 @@ export class ListCuentosComponent implements OnInit {
     this.idCuento = id_cuento;
     this.cuentosSvc.listCuentoxIdioma(id_cuento).subscribe(
       (response: any) => {
-        console.log(response);
-
         this.cuentosxidioma = response;
     });
   }
@@ -47,11 +45,9 @@ export class ListCuentosComponent implements OnInit {
     this.router.navigate(['/main/cuentos/asignar-categorias-hijas', {id: cuento.id}]);
   }
 
-
   editar(e:any)
   {
     $('div#exampleModal').modal('hide');
-    // this.router.navigate(['form-cuentos']);
   }
 
   cerrarModal() {
@@ -78,6 +74,10 @@ export class ListCuentosComponent implements OnInit {
         });
       }
     })
+  }
+
+  editarCuento(idCuento:any) {
+    this.router.navigate(['/main/cuentos/edit-cuento', {idCuento: idCuento}]);
   }
 
 }

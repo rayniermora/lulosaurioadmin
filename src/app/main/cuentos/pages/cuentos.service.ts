@@ -66,4 +66,8 @@ export class CuentosService {
     return this._http.post( environment.url + 'editarcuento', data)
   }
 
+  listCuentoxId(id:any) {
+    return this._http.get( environment.url + 'listarcuentoxid/' + id );
+  }
+
 }

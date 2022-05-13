@@ -33,17 +33,33 @@ export class ListNotificacionComponent implements OnInit {
 
     this._notificacionService.enviarNotificacion(frmNotificacion).subscribe(
       (response: any) => {
+        console.log('enviar notificacion');
         this.response(response);
       }
     );
   }
 
   eliminarNotificacionPush(notificacion:any) {
-    this._notificacionService.eliminarNotificacion(notificacion).subscribe(
-      (response: any) => {
-        this.listarNotificaciones();
+    Swal.fire({
+      icon: 'question',
+      title: 'Confirmar',
+      text: 'Realmente deseas eliminar éste registro?',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      reverseButtons: true
+    }).then((res: any) => {
+      if( res ) {
+        this._notificacionService.eliminarNotificacion(notificacion).subscribe(() => {
+          Swal.fire({
+            title: 'Éxito',
+            icon: 'success',
+            text: `Su registro ha sido eliminado satisfactoriamente!`
+          });
+
+          this.listarNotificaciones();
+        });
       }
-    );
+    });
   }
 
   response(data: any) {

@@ -125,8 +125,6 @@ export class FormCuentosComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log();
-
     const frmCuento = new FormData();
     frmCuento.append('id_cuento', this.id_cuento);
     frmCuento.append('texto', this.contenido);
@@ -145,11 +143,8 @@ export class FormCuentosComponent implements OnInit {
 
     this.cuentosSvc.saveCuento(frmCuento).subscribe(data => {
         this.response(data)
-        // console.log(data);
     });
   }
-
-
 
   response(data: any) {
     Swal.fire({
