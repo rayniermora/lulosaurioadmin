@@ -13,8 +13,12 @@ export class TipoContenidoService {
     return this._http.get(environment.url + 'listartipocontenido');
   }
 
+  listTiposContenidosxIdioma(idlenguaje:any) {
+    return this._http.get(environment.url + 'listartipocontenidoxidioma/' + idlenguaje);
+  }
+
   listTipoContenido(id:string){
-    return this._http.get( environment.url + 'listartipocontenido/' + id );
+    return this._http.get( environment.url + 'listartipocontenidoxid/' + id );
   }
 
   saveTipoContenido(data:any){

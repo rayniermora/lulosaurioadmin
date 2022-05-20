@@ -12,6 +12,10 @@ export class SubCategoriasService {
   listSubCategorias() {
     return this._http.get(environment.url + 'listarsubcategorias');
   }
+  
+  listSubCategoriasxIdioma(idlenguaje:any) {
+    return this._http.get(environment.url + 'listarsubcategoriasxidioma/' + idlenguaje);
+  }
 
   listSubCategoria(id:string){
     return this._http.get( environment.url + 'obtenersubcategoria/' + id );

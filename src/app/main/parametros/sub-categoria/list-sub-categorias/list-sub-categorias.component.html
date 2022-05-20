@@ -6,6 +6,15 @@
     </div>
     <button type="button" class="align-self-start btn btn-fill btn-success" routerLink="/main/parametros/form-sub-categoria">AGREGAR</button>
   </div>
+  
+  <div class="col-md-4 col-sm-4">
+    <label for="id_lenguaje">IDIOMA *</label>
+    <select class="form-control" (change)="changeDropDownList($event)" >
+      <option value="0">Seleccione</option>
+      <option *ngFor="let item of lenguajes" value="{{item.id}}">{{item.nombre}}</option>
+    </select>
+  </div>
+
   <div class="card-content table-responsive table-full-width p-3">
     <table class="table table-hover table-striped">
       <thead>

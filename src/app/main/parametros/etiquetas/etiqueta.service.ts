@@ -17,6 +17,10 @@ export class EtiquetaService {
     return this._http.get( environment.url + 'listetiquetas' )
   }
 
+  listEtiquetasxIdioma(idlenguaje:any) {
+    return this._http.get( environment.url + 'listetiquetasxidioma/' + idlenguaje )
+  }
+
   listEtiqueta(idetiqueta: string) {
     return this._http.get( environment.url + 'listetiqueta/' + idetiqueta )
   }

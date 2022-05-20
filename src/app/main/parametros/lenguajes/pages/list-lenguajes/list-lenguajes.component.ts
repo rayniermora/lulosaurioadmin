@@ -20,9 +20,7 @@ export class ListLenguajesComponent implements OnInit {
   listLenguajes() {
     this.lenguajeSvc.listLenguajes().subscribe(
       (res: any) => {
-        console.log(res);
         this.lenguajes = res;
-
       }
     );
   }

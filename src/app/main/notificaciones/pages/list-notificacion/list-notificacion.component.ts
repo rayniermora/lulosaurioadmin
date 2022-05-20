@@ -33,7 +33,6 @@ export class ListNotificacionComponent implements OnInit {
 
     this._notificacionService.enviarNotificacion(frmNotificacion).subscribe(
       (response: any) => {
-        console.log('enviar notificacion');
         this.response(response);
       }
     );

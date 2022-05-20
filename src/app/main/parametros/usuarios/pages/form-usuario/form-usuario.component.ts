@@ -92,9 +92,7 @@ export class FormUsuarioComponent implements OnInit {
   getUsuario(id: string) {
     this.usuarioSvc.listUsuario(id).subscribe(
       (res: any) => {
-        console.log(res);
         this.model = res;
-
       }
     );
   }
@@ -108,7 +106,6 @@ export class FormUsuarioComponent implements OnInit {
   }
 
   onSubmit(model: any) {
-    console.log(model);
     const formulario = new FormData();
     for (const key in model) {
       if (Object.prototype.hasOwnProperty.call(model, key)) {
@@ -128,14 +125,10 @@ export class FormUsuarioComponent implements OnInit {
         this.usuarioSvc.saveUsuario(formulario).subscribe(
           (res: any) => {
             this.response()
-
           }
         );
-
     }
   }
-
-
 
   response() {
     Swal.fire({

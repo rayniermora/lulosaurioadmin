@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LenguajesService } from '../../lenguajes/lenguajes.service';
 import { SubCategoriasService } from '../sub-categorias.service';
 
 @Component({
@@ -10,25 +11,51 @@ import { SubCategoriasService } from '../sub-categorias.service';
 export class ListSubCategoriasComponent implements OnInit {
 
   subcategorias:any [] = [];
+  lenguajes : any;
 
-  constructor(private router: Router, private subcategoriasSvc: SubCategoriasService) { }
+  constructor(
+    private router: Router,
+    private subcategoriasSvc: SubCategoriasService,
+    private lenguajesSvc: LenguajesService
+    ) { }
 
   ngOnInit() {
-    this.listSubCategorias()
+    this.listarIdioma()
+  }
+
+  listarIdioma() {
+    this.lenguajesSvc.listLenguajes().subscribe((data: any) => {
+      this.lenguajes = data;
+    });
   }
 
   listSubCategorias() {
     this.subcategoriasSvc.listSubCategorias().subscribe(
       (res: any) => {
-        console.log(res);
         this.subcategorias = res;
+      }
+    );
+  }
 
+  listSubCategoriasxIdioma(idlenguaje:any) {
+    this.subcategoriasSvc.listSubCategoriasxIdioma(idlenguaje).subscribe(
+      (res: any) => {
+        this.subcategorias = res;
       }
     );
   }
 
   updateSubCategoria(subcategoria: any){
     this.router.navigate(['/main/parametros/form-sub-categoria', {id: subcategoria.id}]);
+  }
+
+  changeDropDownList(e:any) {
+    let id = e.target.value;
+    if (e.target.value =! 0) {
+      this.listSubCategoriasxIdioma(id);
+    } else {
+      this.subcategorias = [];
+    }
   }
 
 }

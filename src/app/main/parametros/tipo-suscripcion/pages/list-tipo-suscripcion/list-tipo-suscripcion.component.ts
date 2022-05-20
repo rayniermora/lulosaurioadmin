@@ -20,9 +20,7 @@ export class ListTipoSuscripcionComponent implements OnInit {
   listTiposSuscripciones() {
     this.tipossuspSvc.listTiposSuscripciones().subscribe(
       (res: any) => {
-        console.log(res);
         this.tipossuscripciones = res;
-
       }
     );
   }

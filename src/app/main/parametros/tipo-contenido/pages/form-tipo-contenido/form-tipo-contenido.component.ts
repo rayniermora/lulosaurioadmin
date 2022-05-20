@@ -58,9 +58,7 @@ export class FormTipoContenidoComponent implements OnInit {
   getTipoContenido(id: string) {
     this.tipocontenidoSvc.listTipoContenido(id).subscribe(
       (res: any) => {
-        console.log(res);
         this.model = res;
-
       }
     );
   }
@@ -74,7 +72,6 @@ export class FormTipoContenidoComponent implements OnInit {
   }
 
   onSubmit(model: any) {
-    console.log(model);
     const formulario = new FormData();
     for (const key in model) {
       if (Object.prototype.hasOwnProperty.call(model, key)) {
@@ -94,14 +91,11 @@ export class FormTipoContenidoComponent implements OnInit {
         this.tipocontenidoSvc.saveTipoContenido(formulario).subscribe(
           (res: any) => {
             this.response()
-
           }
         );
 
     }
   }
-
-
 
   response() {
     Swal.fire({

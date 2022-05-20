@@ -24,4 +24,8 @@ export class CategoriaHijaService {
   updateCategoriaHija(data: any) {
     return this._http.post( environment.url + 'actualizarcategoriahija', data)
   }
+
+  listCategoriaHijaxIdioma(idlenguaje: string) {
+    return this._http.get( environment.url + 'listarcategoriashijasxidioma/' + idlenguaje )
+  }
 }

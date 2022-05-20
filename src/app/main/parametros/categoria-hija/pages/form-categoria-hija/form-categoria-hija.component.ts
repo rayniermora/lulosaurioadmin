@@ -60,9 +60,7 @@ export class FormCategoriaHijaComponent implements OnInit {
   getCategoriaHija(id: string) {
     this.CategoriaHijaSvc.listCategoriaHija(id).subscribe(
       (res: any) => {
-        console.log(res);
         this.model = res;
-
       }
     );
   }
@@ -76,7 +74,6 @@ export class FormCategoriaHijaComponent implements OnInit {
   }
 
   onSubmit(model: any) {
-    console.log(model);
     const formulario = new FormData();
     for (const key in model) {
       if (Object.prototype.hasOwnProperty.call(model, key)) {
@@ -103,8 +100,6 @@ export class FormCategoriaHijaComponent implements OnInit {
     }
   }
 
-
-
   response() {
     Swal.fire({
       title: 'Éxito',
@@ -113,6 +108,5 @@ export class FormCategoriaHijaComponent implements OnInit {
     })
     this.router.navigate(['/main/parametros/list-categoria-hija'])
   }
-
 
 }

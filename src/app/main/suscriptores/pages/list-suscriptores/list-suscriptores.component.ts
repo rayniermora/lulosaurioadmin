@@ -21,7 +21,6 @@ export class ListSuscriptoresComponent implements OnInit {
     this.usuarioSvc.listUsuariosSuscriptores().subscribe(
       (res: any) => {
         this.usuarios = res;
-
       }
     );
   }

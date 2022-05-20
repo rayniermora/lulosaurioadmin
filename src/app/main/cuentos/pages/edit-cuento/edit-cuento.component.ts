@@ -101,8 +101,6 @@ export class EditCuentoComponent implements OnInit {
 
   getCuento(id: string) {
     this.cuentosSvc.listCuentoxId(id).subscribe((data: any) => {
-      // console.log(data);
-      
       this.listarSubCategorias(data.id_lenguaje);
       this.listarCategorias(data.id_lenguaje);
       this.listarTiposContenido(data.id_lenguaje);
@@ -179,8 +177,6 @@ export class EditCuentoComponent implements OnInit {
     }
 
     this.cuentosSvc.editCuento(frmCuento).subscribe(data => {
-        // console.log(data);
-        
         let jsonData = JSON.stringify(data);
         let objData = JSON.parse(jsonData);
 

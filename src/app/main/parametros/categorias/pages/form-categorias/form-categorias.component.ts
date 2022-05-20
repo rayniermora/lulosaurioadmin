@@ -63,8 +63,6 @@ export class FormCategoriasComponent implements OnInit {
 
   getCategoria(id: string) {
     this.categoriasSvc.listCategoria(id).subscribe((data: any) => {
-      console.log(data);
-
       this.model = data;
     });
 

@@ -38,8 +38,6 @@ export class FormRolComponent implements OnInit {
 
   getRol(id: string) {
     this.rolSvc.listRol(id).subscribe((data: any) => {
-      console.log(data);
-
       this.model = data;
     });
 

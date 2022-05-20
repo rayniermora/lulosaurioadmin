@@ -20,9 +20,7 @@ export class ListRolesComponent implements OnInit {
   listarRoles() {
     this.rolesSvc.listRoles().subscribe(
       (res: any) => {
-        console.log(res);
         this.roles = res;
-
       }
     );
   }

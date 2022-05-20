@@ -41,7 +41,6 @@ export class FormLenguajesComponent implements OnInit {
         this.model = res;
       }
     );
-
   }
 
   onSubmit(model: any) {

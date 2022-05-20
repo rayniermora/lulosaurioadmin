@@ -48,9 +48,7 @@ export class FormTipoSuscripcionComponent implements OnInit {
   getTipoSuscripcion(id: string) {
     this.tiposuscSv.listTipoSuscripcion(id).subscribe(
       (res: any) => {
-        console.log(res);
         this.model = res;
-
       }
     );
   }
@@ -76,10 +74,8 @@ export class FormTipoSuscripcionComponent implements OnInit {
         this.tiposuscSv.saveTipoSuscripcion(formulario).subscribe(
           (res: any) => {
             this.response()
-
           }
         );
-
     }
   }
 

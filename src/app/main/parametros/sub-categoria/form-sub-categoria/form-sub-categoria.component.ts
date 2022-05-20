@@ -26,7 +26,6 @@ export class FormSubCategoriaComponent implements OnInit {
       this.lenguajeSvc.listLenguajes().toPromise()
     ])
 
-
     this.lenguajes = res[0];
 
     this.fields = [
@@ -55,15 +54,12 @@ export class FormSubCategoriaComponent implements OnInit {
     if( this.route.snapshot.params['id'] ) {
       this.getSubCategoria(this.route.snapshot.params['id']);
     }
-
   }
 
   getSubCategoria(id: string) {
     this.subcategoriaSvc.listSubCategoria(id).subscribe(
       (res: any) => {
-        console.log(res);
         this.model = res;
-
       }
     );
   }
@@ -77,7 +73,6 @@ export class FormSubCategoriaComponent implements OnInit {
   }
 
   onSubmit(model: any) {
-    console.log(model);
     const formulario = new FormData();
     for (const key in model) {
       if (Object.prototype.hasOwnProperty.call(model, key)) {
@@ -97,14 +92,10 @@ export class FormSubCategoriaComponent implements OnInit {
         this.subcategoriaSvc.saveSubCategoria(formulario).subscribe(
           (res: any) => {
             this.response()
-
           }
         );
-
     }
   }
-
-
 
   response() {
     Swal.fire({
