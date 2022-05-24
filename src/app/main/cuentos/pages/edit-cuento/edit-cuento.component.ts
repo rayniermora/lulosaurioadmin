@@ -101,6 +101,7 @@ export class EditCuentoComponent implements OnInit {
       this.listarSubCategorias(data.id_lenguaje);
       this.listarCategorias(data.id_lenguaje);
       this.listarTiposContenido(data.id_lenguaje);
+      this.listarTiposContenidoCuento(data.id_lenguaje);
 
       //Asignación de valores dentro del formulario
       this.form.get('id_lenguaje')?.patchValue(data.id_lenguaje);

@@ -89,6 +89,10 @@
                 <td>{{idioma.lenguaje.nombre}}</td>
                 <td>
                   <!-- <a class="btn btn-link btn-warning" >Editar <i class="fa fa-edit"></i></a> -->
+                  <!-- <a class="btn btn-link btn-darnger" (click)="eliminarCuento(idioma)" ><i class="fa fa-times"></i>Eliminar</a> -->
+                  <a class="btn btn-link btn-success" (click)="asignarEtiquetas(idioma)">Asignar etiquetas </a>
+                  <a class="btn btn-link btn-info" (click)="asignarCategorias(idioma)">Asignar sección </a>
+                  <a class="btn btn-link btn-warning" (click)="editarCuento(idioma.id)" ><i class="fa fa-edit"></i>Editar</a>
                   <a class="btn btn-link btn-darnger" (click)="eliminarCuento(idioma)" ><i class="fa fa-times"></i>Eliminar</a>
                 </td>
               </tr>
@@ -98,7 +102,7 @@
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-        <button type="button" class="btn btn-primary" (click)="editar($event)"  [routerLink]="['//main/cuentos/form-cuento', idCuento]">Crear cuento nuevo idioma</button>
+        <button type="button" class="btn btn-primary" (click)="hideModal()"  [routerLink]="['//main/cuentos/form-cuento', idCuento]">Crear cuento nuevo idioma</button>
       </div>
     </div>
   </div>

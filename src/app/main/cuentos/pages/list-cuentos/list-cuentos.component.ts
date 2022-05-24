@@ -38,15 +38,16 @@ export class ListCuentosComponent implements OnInit {
     });
   }
   asignarEtiquetas(cuento: any){
+    this.hideModal();
     this.router.navigate(['/main/cuentos/asignar-etiquetas', {id: cuento.id, idioma: cuento.id_lenguaje}]);
   }
 
   asignarCategorias(cuento: any){
+    this.hideModal();
     this.router.navigate(['/main/cuentos/asignar-categorias-hijas', {id: cuento.id, idioma: cuento.id_lenguaje}]);
   }
 
-  editar(e:any)
-  {
+  hideModal() {
     $('div#exampleModal').modal('hide');
   }
 
@@ -77,6 +78,7 @@ export class ListCuentosComponent implements OnInit {
   }
 
   editarCuento(idCuento:any) {
+    this.hideModal();
     this.router.navigate(['/main/cuentos/edit-cuento', {idCuento: idCuento}]);
   }
 
