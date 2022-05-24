@@ -21,21 +21,22 @@ export class AsignarEtiquetasComponent implements OnInit {
   etix:any;
   habilitaenviar = false;
   id_cuento:any;
+  id_lenguaje:any;
 
   constructor(private route: ActivatedRoute, private etiquetasSvc: EtiquetaService, private fb: FormBuilder,private cuentosSvc: CuentosService) { }
 
   async ngOnInit() {
-    this.id_cuento = this.route.snapshot.params['id']
+    this.id_cuento = this.route.snapshot.params['id'];
+    this.id_lenguaje = this.route.snapshot.params['idioma'];
+    
     const res: any = await Promise.all([
-      this.etiquetasSvc.listEtiquetas().toPromise(),
+      this.etiquetasSvc.listEtiquetasxIdioma(this.id_lenguaje).toPromise(),
       this.cuentosSvc.listEtiquetasExistentes(this.id_cuento).toPromise()
 
-    ])
+    ]);
+
     this.etiquetasexistentes = res[1];
-    console.log(this.etiquetasexistentes);
-
     this.etiquetas = res[0].response;
-
   }
 
 
@@ -43,28 +44,25 @@ export class AsignarEtiquetasComponent implements OnInit {
   cargarEtiqeutasExistentes(){
     this.cuentosSvc.listEtiquetasExistentes(this.id_cuento).subscribe(
       (res: any) => {
-        console.log(res);
-
       }
     );
   }
 
   onSubmit(event: any){
-
-
     this.etix = {
       id:this.etiquetas[event.target.value].id,
       nombre: this.etiquetas[event.target.value].nombre
     };
+
     let esta = 0;
 
     this.etiquetasseleccionadas.forEach(etiqueta => {
       if (etiqueta.id == this.etiquetas[event.target.value].id) {
         esta = 1;
         return;
-
       }
     });
+
     if(esta == 0){
       this.habilitaenviar = true;
       this.etiquetasseleccionadas.push(this.etix)
@@ -75,14 +73,9 @@ export class AsignarEtiquetasComponent implements OnInit {
         text: `Ya existe este elemento dentro de las etiquetas seleccionadas`
       })
     }
-    console.log(this.etiquetasseleccionadas);
-
-
-
   }
 
   deleteEtiqueta(i:any) {
-
     this.etiquetasseleccionadas.splice(i,1);
   }
 
@@ -93,7 +86,6 @@ export class AsignarEtiquetasComponent implements OnInit {
     }
     this.cuentosSvc.crearEtiquetaCuento(data).subscribe(
       (res: any) => {
-        console.log(res);
         this.cuentosSvc.listEtiquetasExistentes(this.id_cuento).subscribe(
           (res: any) => {
             this.etiquetasexistentes = res;
@@ -101,7 +93,6 @@ export class AsignarEtiquetasComponent implements OnInit {
             this.habilitaenviar = false;
           }
         );
-
       }
     );
 
@@ -142,11 +133,6 @@ export class AsignarEtiquetasComponent implements OnInit {
 
       }
     })
-
-
-
   }
-
-
 
 }

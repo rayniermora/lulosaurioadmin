@@ -26,10 +26,7 @@ export class FormCuentosComponent implements OnInit {
   categoriashijas: any = []
   subcategorias: any = []
   tiposcontenidos: any = []
-  contenidopago: any = [
-    {'id': 0, 'nombre': 'FREE'},
-    {'id': 1, 'nombre': 'PREMIUM'},
-  ]
+  contenidopago: any = []
   imagen_cuento :any;
   audio_cuento :any;
   video_cuento :any;
@@ -54,6 +51,15 @@ export class FormCuentosComponent implements OnInit {
     this.lenguajesSvc.listLenguajes().subscribe((data: any) => {
       this.lenguajes = data;
     });
+
+    if (this.id_cuento == 0 || this.id_cuento == null) {
+      this.form.get('id_lenguaje')?.patchValue(1);
+      this.form.get('id_lenguaje')?.disable();
+      this.listarCategorias(1);
+      this.listarSubCategorias(1);
+      this.listarTiposContenido(1);
+      this.listarTiposContenidoCuento(1);
+    }
   }
 
   crearFormulario() {
@@ -99,29 +105,49 @@ export class FormCuentosComponent implements OnInit {
 
   changeDropDownList( e:any ){
     if (e.target.value != 0) {
-      this.categoriasSvc.listCategorias(e.target.value).subscribe(
-        (response:any) => {
-          this.categorias = response;
-        }
-      );
-
-      this.cuentosSvc.listSubCategorias(e.target.value).subscribe(
-        (response:any) => {
-          this.subcategorias = response;
-        }
-      );
-
-      this.cuentosSvc.listTipoContenido(e.target.value).subscribe(
-        (response:any) => {
-          this.tiposcontenidos = response;
-        }
-      );
+      this.listarCategorias(e.target.value);
+      this.listarSubCategorias(e.target.value);
+      this.listarTiposContenido(e.target.value);
+      this.listarTiposContenidoCuento(e.target.value);
     } else {
       this.categorias = [];
       this.subcategorias = [];
       this.tiposcontenidos = [];
+      this.contenidopago = [];
     }
 
+  }
+
+  listarCategorias(idioma:any) {
+    this.categoriasSvc.listCategorias(idioma).subscribe(
+      (response:any) => {
+        this.categorias = response;
+      }
+    );
+  }
+
+  listarSubCategorias(idioma:any) {
+    this.cuentosSvc.listSubCategoriasxIdioma(idioma).subscribe(
+      (response:any) => {
+        this.subcategorias = response;
+      }
+    );
+  }
+
+  listarTiposContenido(idioma:any) {
+    this.cuentosSvc.listTipoContenidoxIdioma(idioma).subscribe(
+      (response:any) => {
+        this.tiposcontenidos = response;
+      }
+    );
+  }
+
+  listarTiposContenidoCuento(idioma:any) {
+    this.cuentosSvc.listTipoContenidoCuentoxIdioma(idioma).subscribe(
+      (response:any) => {
+        this.contenidopago = response.data;
+      }
+    );
   }
 
   onSubmit() {

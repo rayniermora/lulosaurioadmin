@@ -21,15 +21,17 @@ export class AsignarCategoriasHijasComponent implements OnInit {
   etix:any;
   habilitaenviar = false;
   id_cuento:any;
+  id_lenguaje:any;
 
   constructor(private route: ActivatedRoute, private categoriaHija: CategoriaHijaService, private cuentosSvc: CuentosService) { }
 
   async ngOnInit() {
-    this.id_cuento = this.route.snapshot.params['id']
-    const res: any = await Promise.all([
-      this.categoriaHija.listCategoriasHijas().toPromise(),
-      this.cuentosSvc.listCategoriasHijasExistentes(this.id_cuento).toPromise()
+    this.id_cuento = this.route.snapshot.params['id'];
+    this.id_lenguaje = this.route.snapshot.params['idioma'];
 
+    const res: any = await Promise.all([
+      this.categoriaHija.listCategoriaHijaxIdioma(this.id_lenguaje).toPromise(),
+      this.cuentosSvc.listCategoriasHijasExistentes(this.id_cuento).toPromise()
     ])
 
     this.categoriahija = res[0];
@@ -38,17 +40,10 @@ export class AsignarCategoriasHijasComponent implements OnInit {
   }
 
   cargarCategoriasHija(){
-    this.cuentosSvc.listCategoriasHijasExistentes(this.id_cuento).subscribe(
-      (res: any) => {
-        console.log(res);
-
-      }
-    );
+    this.cuentosSvc.listCategoriasHijasExistentes(this.id_cuento).subscribe((res: any) => {});
   }
 
   onSubmit(event: any){
-
-
     this.etix = {
       id:this.categoriahija[event.target.value].id,
       nombre: this.categoriahija[event.target.value].nombre
@@ -62,6 +57,7 @@ export class AsignarCategoriasHijasComponent implements OnInit {
 
       }
     });
+
     if(esta == 0){
       this.habilitaenviar = true;
       this.categoriashijasseleccionadas.push(this.etix)
@@ -72,11 +68,9 @@ export class AsignarCategoriasHijasComponent implements OnInit {
         text: `Ya existe este elemento dentro de las etiquetas seleccionadas`
       })
     }
-
   }
 
   deleteEtiqueta(i:any) {
-
     this.categoriashijasseleccionadas.splice(i,1);
   }
 
@@ -87,7 +81,6 @@ export class AsignarCategoriasHijasComponent implements OnInit {
     }
     this.cuentosSvc.crearCategoriaHijaCuento(data).subscribe(
       (res: any) => {
-        console.log(res);
         this.cuentosSvc.listCategoriasHijasExistentes(this.id_cuento).subscribe(
           (res: any) => {
             this.cathijasexistentes = res;
@@ -95,10 +88,8 @@ export class AsignarCategoriasHijasComponent implements OnInit {
             this.habilitaenviar = false;
           }
         );
-
       }
     );
-
   }
 
   eliminarEtiquetaSeleccionada(etiqueta: any) {
@@ -117,7 +108,6 @@ export class AsignarCategoriasHijasComponent implements OnInit {
       cancelButtonText: "Cancelar"
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(result);
         this.cuentosSvc.deleteCategoriaHijaExistente(data).subscribe(
           (res: any) => {
             this.cuentosSvc.listCategoriasHijasExistentes(this.id_cuento).subscribe(
@@ -128,17 +118,12 @@ export class AsignarCategoriasHijasComponent implements OnInit {
                   'La etiqueta fue eliminada con exito.',
                   'success'
                 )
-
               }
             );
           }
         );
-
       }
     })
-
-
-
   }
 
 }

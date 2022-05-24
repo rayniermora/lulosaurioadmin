@@ -38,11 +38,11 @@ export class ListCuentosComponent implements OnInit {
     });
   }
   asignarEtiquetas(cuento: any){
-    this.router.navigate(['/main/cuentos/asignar-etiquetas', {id: cuento.id}]);
+    this.router.navigate(['/main/cuentos/asignar-etiquetas', {id: cuento.id, idioma: cuento.id_lenguaje}]);
   }
 
   asignarCategorias(cuento: any){
-    this.router.navigate(['/main/cuentos/asignar-categorias-hijas', {id: cuento.id}]);
+    this.router.navigate(['/main/cuentos/asignar-categorias-hijas', {id: cuento.id, idioma: cuento.id_lenguaje}]);
   }
 
   editar(e:any)

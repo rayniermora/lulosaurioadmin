@@ -25,13 +25,20 @@ export class CuentosService {
     return this._http.post( environment.url + 'crearcuento' , data);
   }
 
-
-  listSubCategorias(id_lenguaje:any) {
-    return this._http.get( environment.url + 'listarsubcategorias/' + id_lenguaje)
+  listSubCategorias() {
+    return this._http.get( environment.url + 'listarsubcategorias')
   }
 
-  listTipoContenido(id_lenguaje:any) {
-    return this._http.get( environment.url + 'listartipocontenido/' + id_lenguaje)
+  listSubCategoriasxIdioma(id_lenguaje:any) {
+    return this._http.get( environment.url + 'listarsubcategoriasxidioma/' + id_lenguaje)
+  }
+
+  listTipoContenido() {
+    return this._http.get( environment.url + 'listartipocontenido')
+  }
+
+  listTipoContenidoxIdioma(id_lenguaje:any) {
+    return this._http.get( environment.url + 'listartipocontenidoxidioma/' + id_lenguaje)
   }
 
   listCategoriasHijas() {
@@ -68,6 +75,10 @@ export class CuentosService {
 
   listCuentoxId(id:any) {
     return this._http.get( environment.url + 'listarcuentoxid/' + id );
+  }
+
+  listTipoContenidoCuentoxIdioma(id_lenguaje:any) {
+    return this._http.get( environment.url + 'listartipocontenidocuentoxidioma/' + id_lenguaje );
   }
 
 }

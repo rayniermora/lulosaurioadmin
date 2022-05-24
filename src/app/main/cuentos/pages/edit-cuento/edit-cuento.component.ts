@@ -26,10 +26,7 @@ export class EditCuentoComponent implements OnInit {
   categoriashijas: any = []
   subcategorias: any = []
   tiposcontenidos: any = []
-  contenidopago: any = [
-    {'id': 0, 'nombre': 'FREE'},
-    {'id': 1, 'nombre': 'PREMIUM'},
-  ]
+  contenidopago: any = []
   imagen_cuento :any;
   audio_cuento :any;
   video_cuento :any;
@@ -116,6 +113,7 @@ export class EditCuentoComponent implements OnInit {
       this.form.get('sinopsis')?.patchValue(data.sinopsis);
       this.form.get('resumen')?.patchValue(data.resumen);
       this.contenido = data.texto;
+      this.form.get('id_lenguaje')?.disable();
     });
   }
 
@@ -124,10 +122,12 @@ export class EditCuentoComponent implements OnInit {
       this.listarCategorias(e.target.value);
       this.listarSubCategorias(e.target.value);
       this.listarTiposContenido(e.target.value);
+      this.listarTiposContenidoCuento(e.target.value);
     } else {
       this.categorias = [];
       this.subcategorias = [];
       this.tiposcontenidos = [];
+      this.contenidopago = [];
     }
 
   }
@@ -141,7 +141,7 @@ export class EditCuentoComponent implements OnInit {
   }
 
   listarSubCategorias(idioma:any) {
-    this.cuentosSvc.listSubCategorias(idioma).subscribe(
+    this.cuentosSvc.listSubCategoriasxIdioma(idioma).subscribe(
       (response:any) => {
         this.subcategorias = response;
       }
@@ -149,9 +149,17 @@ export class EditCuentoComponent implements OnInit {
   }
 
   listarTiposContenido(idioma:any) {
-    this.cuentosSvc.listTipoContenido(idioma).subscribe(
+    this.cuentosSvc.listTipoContenidoxIdioma(idioma).subscribe(
       (response:any) => {
         this.tiposcontenidos = response;
+      }
+    );
+  }
+
+  listarTiposContenidoCuento(idioma:any) {
+    this.cuentosSvc.listTipoContenidoCuentoxIdioma(idioma).subscribe(
+      (response:any) => {
+        this.contenidopago = response.data;
       }
     );
   }
