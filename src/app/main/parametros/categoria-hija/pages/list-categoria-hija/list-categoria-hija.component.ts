@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { LenguajesService } from '../../../lenguajes/lenguajes.service';
 import { CategoriaHijaService } from '../../categoria-hija.service';
 
@@ -57,6 +58,18 @@ export class ListCategoriaHijaComponent implements OnInit {
     } else {
       this.categoriashijas = [];
     }
+  }
+
+  eliminarCategoriaHija(data:any){
+    this.categoriasHijaSvc.eliminarCategoriaHija(data).subscribe(
+      (res: any) => {}
+    );
+
+    Swal.fire({
+      title: 'Éxito',
+      icon: 'success',
+      text: `Su registro ha sido eliminado satisfactoriamente!`
+    });
   }
 
 }

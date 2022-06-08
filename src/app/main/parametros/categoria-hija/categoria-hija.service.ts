@@ -28,4 +28,8 @@ export class CategoriaHijaService {
   listCategoriaHijaxIdioma(idlenguaje: string) {
     return this._http.get( environment.url + 'listarcategoriashijasxidioma/' + idlenguaje )
   }
+
+  eliminarCategoriaHija(data: any){
+    return this._http.post( environment.url + 'eliminarcategoriahija', data)
+  }
 }
