@@ -29,4 +29,8 @@ export class EtiquetaService {
     return this._http.post( environment.url + 'editetiquetas', data)
   }
 
+  eliminarEtiqueta(data: any) {
+    return this._http.post( environment.url + 'eliminaretiqueta', data)
+  }
+
 }

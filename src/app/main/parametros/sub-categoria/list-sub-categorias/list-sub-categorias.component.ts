@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { LenguajesService } from '../../lenguajes/lenguajes.service';
 import { SubCategoriasService } from '../sub-categorias.service';
 
@@ -56,6 +57,18 @@ export class ListSubCategoriasComponent implements OnInit {
     } else {
       this.subcategorias = [];
     }
+  }
+
+  eliminarSubCategoria(data:any) {
+    this.subcategoriasSvc.eliminarSubCategoria(data).subscribe(
+      (res: any) => { }
+    );
+
+    Swal.fire({
+      title: 'Éxito',
+      icon: 'success',
+      text: `Su registro ha sido eliminado satisfactoriamente!`
+    });
   }
 
 }

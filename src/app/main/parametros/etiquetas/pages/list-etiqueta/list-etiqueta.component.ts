@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { LenguajesService } from '../../../lenguajes/lenguajes.service';
 import { EtiquetaService } from '../../etiqueta.service';
 
@@ -56,6 +57,18 @@ export class ListEtiquetaComponent implements OnInit {
     } else {
       this.etiquetas = [];
     }
+  }
+
+  eliminarEtiqueta(data: any) {
+    this.etiquetasSvc.eliminarEtiqueta(data).subscribe(
+      (res: any) => { }
+    );
+
+    Swal.fire({
+      title: 'Éxito',
+      icon: 'success',
+      text: `Su registro ha sido eliminado satisfactoriamente!`
+    });
   }
 
 }

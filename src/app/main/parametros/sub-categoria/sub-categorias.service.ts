@@ -29,5 +29,9 @@ export class SubCategoriasService {
     return this._http.post( environment.url + 'actualizarsubcategoria', data)
   }
 
+  eliminarSubCategoria(data:any){
+    return this._http.post( environment.url + 'eliminarsubcategoria', data)
+  }
+
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { RolesService } from '../../roles.service';
 
 @Component({
@@ -27,6 +28,18 @@ export class ListRolesComponent implements OnInit {
 
   updateRol(rol: any) {
     this.router.navigate(['/main/parametros/form-rol', {id: rol.id}]);
+  }
+
+  eliminarRol(data:any) {
+    this.rolesSvc.eliminarRol(data).subscribe(
+      (res: any) => { }
+    );
+
+    Swal.fire({
+      title: 'Éxito',
+      icon: 'success',
+      text: `Su registro ha sido eliminado satisfactoriamente!`
+    });
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { LenguajesService } from '../../lenguajes.service';
 
 @Component({
@@ -27,6 +28,18 @@ export class ListLenguajesComponent implements OnInit {
 
   updateLenguaje(lenguajes: any){
     this.router.navigate(['/main/parametros/form-lenguajes', {id: lenguajes.id}]);
+  }
+
+  eliminarLenguaje(data:any) {
+    this.lenguajeSvc.eliminarLenguaje(data).subscribe(
+      (res: any) => { }
+    );
+
+    Swal.fire({
+      title: 'Éxito',
+      icon: 'success',
+      text: `Su registro ha sido eliminado satisfactoriamente!`
+    });
   }
 
 }

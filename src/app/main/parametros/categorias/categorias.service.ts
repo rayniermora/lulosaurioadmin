@@ -25,7 +25,9 @@ export class CategoriasService {
     return this._http.post( environment.url + 'actualizarcategoria', data)
   }
 
-
+  eliminarCategoria(data:any){
+    return this._http.post( environment.url + 'eliminarcategoria', data)
+  }
 
 
 }

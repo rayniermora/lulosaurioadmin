@@ -25,4 +25,8 @@ export class RolesService {
     return this._http.post( environment.url + 'actualizarrol', data)
   }
 
+  eliminarRol(data: any) {
+    return this._http.post( environment.url + 'eliminarrol', data)
+  }
+
 }

@@ -28,4 +28,8 @@ export class TipoContenidoService {
   updateTipoContenido(data:any){
     return this._http.post( environment.url + 'actualizartipocontenido', data)
   }
+  
+  eliminarTipoContenido(data:any){
+    return this._http.post( environment.url + 'eliminartipocontenido', data)
+  }
 }

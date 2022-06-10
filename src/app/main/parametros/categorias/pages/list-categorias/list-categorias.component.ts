@@ -2,6 +2,7 @@ import {  Component,  OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoriasService } from '../../categorias.service';
 import { LenguajesService } from 'src/app/main/parametros/lenguajes/lenguajes.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-categorias',
@@ -47,6 +48,18 @@ export class ListCategoriasComponent implements OnInit {
     } else {
       this.categorias = [];
     }
+  }
+
+  eliminarCategoria(data: any) {
+    this.categoriasSvc.eliminarCategoria(data).subscribe(
+      (res: any) => { }
+    );
+
+    Swal.fire({
+      title: 'Éxito',
+      icon: 'success',
+      text: `Su registro ha sido eliminado satisfactoriamente!`
+    });
   }
 
 }

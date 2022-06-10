@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { TipoSuscripcionService } from '../../tipo-suscripcion.service';
 
 @Component({
@@ -27,6 +28,18 @@ export class ListTipoSuscripcionComponent implements OnInit {
 
   updateTipoSuscripcion(tipo: any){
     this.router.navigate(['/main/parametros/form-tipo-suscripcion', {id: tipo.id}]);
+  }
+  
+  eliminarTipoSuscripcion(data:any) {
+    this.tipossuspSvc.eliminarTipoSuscripcion(data).subscribe(
+      (res: any) => { }
+    );
+
+    Swal.fire({
+      title: 'Éxito',
+      icon: 'success',
+      text: `Su registro ha sido eliminado satisfactoriamente!`
+    });
   }
 
 }

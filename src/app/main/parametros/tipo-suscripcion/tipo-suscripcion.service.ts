@@ -24,4 +24,8 @@ export class TipoSuscripcionService {
   updateTipoSuscripcion(data: any) {
     return this._http.post( environment.url + 'actualizartiposuscripcion', data)
   }
+
+  eliminarTipoSuscripcion(data: any) {
+    return this._http.post( environment.url + 'eliminartiposuscripcion', data)
+  }
 }

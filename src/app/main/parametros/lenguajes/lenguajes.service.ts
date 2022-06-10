@@ -25,5 +25,8 @@ export class LenguajesService {
     return this._http.post( environment.url + 'editlenguajes', data)
   }
 
+  eliminarLenguaje(data:any){
+    return this._http.post( environment.url + 'eliminaridioma', data)
+  }
 
 }

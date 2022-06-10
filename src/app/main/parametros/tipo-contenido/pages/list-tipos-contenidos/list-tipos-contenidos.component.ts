@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { LenguajesService } from '../../../lenguajes/lenguajes.service';
 import { TipoContenidoService } from '../../tipo-contenido.service';
 
@@ -56,6 +57,18 @@ export class ListTiposContenidosComponent implements OnInit {
     } else {
       this.tiposcontenido = [];
     }
+  }
+
+  eliminarTipoContenido(data:any) {
+    this.tipocontenidoSvc.eliminarTipoContenido(data).subscribe(
+      (res: any) => { }
+    );
+
+    Swal.fire({
+      title: 'Éxito',
+      icon: 'success',
+      text: `Su registro ha sido eliminado satisfactoriamente!`
+    });
   }
 
 }
