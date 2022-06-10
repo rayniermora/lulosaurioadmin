@@ -31,15 +31,24 @@ export class ListTipoSuscripcionComponent implements OnInit {
   }
   
   eliminarTipoSuscripcion(data:any) {
-    this.tipossuspSvc.eliminarTipoSuscripcion(data).subscribe(
-      (res: any) => { }
-    );
-
     Swal.fire({
-      title: 'Éxito',
-      icon: 'success',
-      text: `Su registro ha sido eliminado satisfactoriamente!`
-    });
+      icon: 'question',
+      title: 'Confirmar',
+      text: 'Realmente deseas eliminar éste registro?',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      reverseButtons: true
+    }).then((res: any) => {
+      if( res.isConfirmed ) {
+        this.tipossuspSvc.eliminarTipoSuscripcion(data).subscribe(() => {
+          Swal.fire({
+            title: 'Éxito',
+            icon: 'success',
+            text: `Su registro ha sido eliminado satisfactoriamente!`
+          });
+        });
+      }
+    })
   }
 
 }
