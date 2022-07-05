@@ -29,5 +29,7 @@ export class CategoriasService {
     return this._http.post( environment.url + 'eliminarcategoria', data)
   }
 
-
+  buscarCategoria(nombre:any){
+    return this._http.get( environment.url + 'buscarcategoria/' + nombre )
+  }
 }

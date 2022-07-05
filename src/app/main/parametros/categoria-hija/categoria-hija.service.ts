@@ -32,4 +32,8 @@ export class CategoriaHijaService {
   eliminarCategoriaHija(data: any){
     return this._http.post( environment.url + 'eliminarcategoriahija', data)
   }
+
+  buscarCategoriaHija(nombre:any){
+    return this._http.get( environment.url + 'buscarcategoriashijas/' + nombre )
+  }
 }

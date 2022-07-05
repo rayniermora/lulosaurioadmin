@@ -81,4 +81,17 @@ export class ListCategoriaHijaComponent implements OnInit {
     })
   }
 
+  buscarCategoriaHija(evento:any){
+    if (evento.target.value != '') {
+      setTimeout(()=>{
+        this.categoriasHijaSvc.buscarCategoriaHija(evento.target.value).subscribe(
+          (res: any) => {
+            this.categoriashijas = res.data;
+          }
+        );
+      }, 2000);
+    } else {      
+      this.categoriashijas = [];
+    }
+  }
 }

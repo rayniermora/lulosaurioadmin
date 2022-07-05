@@ -28,4 +28,8 @@ export class UsuariosService {
   listUsuariosSuscriptores() {
     return this._http.get(environment.url + 'listarusuariossuscriptores');
   }
+
+  buscarSuscriptores(query:any){
+    return this._http.get(environment.url + 'buscarsuscriptores/' + query);
+  }
 }

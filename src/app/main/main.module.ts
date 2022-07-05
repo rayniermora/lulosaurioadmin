@@ -7,6 +7,7 @@ import { ParametrosComponent } from './parametros/parametros.component';
 import { CuentosComponent } from './cuentos/cuentos.component';
 import { SuscriptoresComponent } from './suscriptores/suscriptores.component';
 import { NotificacionPushComponent } from './notificaciones/notificacion-push.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 
@@ -16,7 +17,8 @@ import { NotificacionPushComponent } from './notificaciones/notificacion-push.co
     ParametrosComponent,
     CuentosComponent,
     SuscriptoresComponent,
-    NotificacionPushComponent
+    NotificacionPushComponent,
+    PerfilComponent
   ],
   imports: [
     CommonModule,

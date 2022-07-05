@@ -80,4 +80,17 @@ export class ListEtiquetaComponent implements OnInit {
     })
   }
 
+  buscarEtiqueta(evento:any){
+    if (evento.target.value != '') {
+      setTimeout(()=>{
+        this.etiquetasSvc.buscarEtiqueta(evento.target.value).subscribe(
+          (res: any) => {
+            this.etiquetas = res.data;
+          }
+        );
+      }, 2000);
+    } else {      
+      this.etiquetas = [];
+    }
+  }
 }

@@ -29,4 +29,17 @@ export class ListSuscriptoresComponent implements OnInit {
     this.router.navigate(['/main/suscriptores/form-suscriptor', {id: usuarios.id}]);
   }
 
+  buscarSuscriptor(evento:any){
+    if (evento.target.value != '') {
+      setTimeout(()=>{
+        this.usuarioSvc.buscarSuscriptores(evento.target.value).subscribe(
+          (res: any) => {
+            this.usuarios = res.data;
+          }
+        );
+      }, 2000);
+    } else {      
+      this.listarUsuarios();
+    }
+  }
 }
