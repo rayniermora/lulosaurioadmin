@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { LenguajesService } from '../../../lenguajes/lenguajes.service';
 import { EtiquetaService } from '../../etiqueta.service';
+import { debounceTime, map, switchMap } from "rxjs/operators";
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-list-etiqueta',
@@ -21,7 +23,17 @@ export class ListEtiquetaComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.listarIdioma()
+    this.listarIdioma();
+
+    var searchEtiqueta = document.getElementById('searchEtiqueta') as HTMLInputElement;
+    var keyUpEvent = fromEvent(searchEtiqueta, 'keyup').pipe(
+      map((event) => (event.target as HTMLInputElement).value)
+    );
+
+    keyUpEvent.pipe(
+      debounceTime(1000),
+      switchMap(async (value) => this.buscarEtiqueta(value))
+    ).subscribe();
   }
 
   listarIdioma() {
@@ -80,15 +92,13 @@ export class ListEtiquetaComponent implements OnInit {
     })
   }
 
-  buscarEtiqueta(evento:any){
-    if (evento.target.value != '') {
-      setTimeout(()=>{
-        this.etiquetasSvc.buscarEtiqueta(evento.target.value).subscribe(
-          (res: any) => {
-            this.etiquetas = res.data;
-          }
-        );
-      }, 2000);
+  buscarEtiqueta(nombre:string){
+    if (nombre.length > 0) {
+      this.etiquetasSvc.buscarEtiqueta(nombre).subscribe(
+        (res: any) => {
+          this.etiquetas = res.data;
+        }
+      );
     } else {      
       this.etiquetas = [];
     }
