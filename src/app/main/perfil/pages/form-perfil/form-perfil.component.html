@@ -1,0 +1,52 @@
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+      <div>
+        <h4 class="card-title">Mi Perfil</h4>
+        <p class="card-category">
+          Actualizar datos
+        </p>
+      </div>
+      
+    </div>
+    <div class="card-content p-3">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-12">
+  
+            <div class="form-row">
+              <div class="col-md-4 col-sm-4">
+                <label for="name">NOMBRE</label>
+                <input class="form-control" type="text" formControlName="name">
+              </div>
+  
+              <div class="col-md-4 col-sm-4">
+                <label for="email">CORREO</label>
+                <input class="form-control" type="text" formControlName="email">
+              </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-4 col-sm-4">
+                    <label for="password">CONTRASEÑA</label>
+                    <input class="form-control" type="password" formControlName="password">
+                </div>
+
+                <!-- <div class="col-md-4 col-sm-4">
+                    <label for="password_confirm">CONFIRMAR CONTRASEÑA *</label>
+                    <input class="form-control" type="password" formControlName="password_confirm">
+                </div> -->
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-4 col-sm-4">
+                    <button type="button" (click)="actualizarDatos()" class="btn btn-primary">Actualizar datos</button>
+                </div>
+            </div>
+  
+          </div>
+        </div>
+  
+      </form>
+    </div>
+  </div>
+  

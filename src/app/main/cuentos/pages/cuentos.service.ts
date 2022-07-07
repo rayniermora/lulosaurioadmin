@@ -81,4 +81,12 @@ export class CuentosService {
     return this._http.get( environment.url + 'listartipocontenidocuentoxidioma/' + id_lenguaje );
   }
 
+  actualizarCuentoDestacado(data:any) {
+    return this._http.post( environment.url + 'agregarcuentodestacado', data)
+  }
+
+  buscarCuento(nombre:any){
+    return this._http.get( environment.url + 'buscartitulocuento/' + nombre );
+  }
+
 }

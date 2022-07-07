@@ -82,4 +82,34 @@ export class ListCuentosComponent implements OnInit {
     this.router.navigate(['/main/cuentos/edit-cuento', {idCuento: idCuento}]);
   }
 
+  agregrarEliminarCuentoDestacado(evento:any, cuento:any){
+    if (evento.target.checked) {
+      this.cuentosSvc.actualizarCuentoDestacado(cuento).subscribe(
+        (response: any) => {
+          if (response.success) {
+            Swal.fire({
+              title: 'Éxito',
+              icon: 'success',
+              text: `Cuento destacado seleccionado satisfactoriamente!`
+            })
+            this.listCuentos();
+          }
+      });
+    }
+  }
+
+  buscarCuento(evento:any){
+    if (evento.target.value != '') {
+      setTimeout(()=>{
+        this.cuentosSvc.buscarCuento(evento.target.value).subscribe(
+          (res: any) => {
+            this.cuentos = res.data;
+          }
+        );
+      }, 2000);
+    } else {      
+      this.listCuentos();
+    }
+  }
+
 }

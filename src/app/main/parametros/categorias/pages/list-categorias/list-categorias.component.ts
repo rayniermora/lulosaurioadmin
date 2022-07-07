@@ -71,5 +71,18 @@ export class ListCategoriasComponent implements OnInit {
     })
   }
 
+  buscarCategoria(evento:any){
+    if (evento.target.value != '') {
+      setTimeout(()=>{
+        this.categoriasSvc.buscarCategoria(evento.target.value).subscribe(
+          (res: any) => {
+            this.categorias = res.data;
+          }
+        );
+      }, 2000);
+    } else {      
+      this.categorias = [];
+    }
+  }
 }
 

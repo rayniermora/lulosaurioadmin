@@ -33,4 +33,7 @@ export class EtiquetaService {
     return this._http.post( environment.url + 'eliminaretiqueta', data)
   }
 
+  buscarEtiqueta(nombre:any){
+    return this._http.get( environment.url + 'buscaretiquetas/' + nombre )
+  }
 }

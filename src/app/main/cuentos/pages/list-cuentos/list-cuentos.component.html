@@ -7,6 +7,11 @@
     <button type="button" class="align-self-start btn btn-fill btn-success" routerLink="/main/cuentos/form-cuento/0">AGREGAR</button>
   </div>
   <div class="card-content table-responsive table-full-width p-3">
+    <div class="col-md-4 col-sm-4">
+        <label>Buscar Cuento</label>
+        <input class="form-control" type="text" (keyup)="buscarCuento($event)">
+    </div>    
+
     <table class="table table-bigboy">
       <thead>
         <tr>
@@ -17,6 +22,7 @@
           <th>Duración</th>
           <th>Formato</th>
           <th>Tipo contenido</th>
+          <th>Destacado</th>
           <th>Idioma</th>
           <th class="text-right">Acciones</th>
         </tr>
@@ -34,6 +40,9 @@
           <td>{{cuento.duracion}}</td>
           <td>{{cuento.formato}}</td>
           <td>{{cuento.tipo_contenido.nombre}}</td>
+          <td class="text-center">
+            <input type="checkbox" [checked]="cuento.recomendado" (change)="agregrarEliminarCuentoDestacado($event,cuento)">
+          </td>
           <td>
             <a (click)="listCuentoxIdioma(cuento.id_cuento)" class="btn btn-link btn-warning" data-toggle="modal" data-target="#exampleModal">Idioma <i class="fa fa-edit"></i></a>
           </td>
