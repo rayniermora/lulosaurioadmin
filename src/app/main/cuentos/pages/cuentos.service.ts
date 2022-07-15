@@ -89,4 +89,8 @@ export class CuentosService {
     return this._http.get( environment.url + 'buscartitulocuento/' + nombre );
   }
 
+  actualizarCuentoRecomendado(data:any) {
+    return this._http.post( environment.url + 'agregarcuentorecomendado', data)
+  }
+
 }
