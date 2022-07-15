@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { LenguajesService } from '../../../lenguajes/lenguajes.service';
 import { CategoriaHijaService } from '../../categoria-hija.service';
+import { debounceTime, map, switchMap } from "rxjs/operators";
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-list-categoria-hija',
@@ -21,7 +23,17 @@ export class ListCategoriaHijaComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.listarIdioma()
+    this.listarIdioma();
+
+    var searchCategoriaHija = document.getElementById('searchCategoriaHija') as HTMLInputElement;
+    var keyUpEvent = fromEvent(searchCategoriaHija, 'keyup').pipe(
+      map((event) => (event.target as HTMLInputElement).value)
+    );
+
+    keyUpEvent.pipe(
+      debounceTime(1000),
+      switchMap(async (value) => this.buscarCategoriaHija(value))
+    ).subscribe();
   }
 
   listarIdioma() {
@@ -81,15 +93,13 @@ export class ListCategoriaHijaComponent implements OnInit {
     })
   }
 
-  buscarCategoriaHija(evento:any){
-    if (evento.target.value != '') {
-      setTimeout(()=>{
-        this.categoriasHijaSvc.buscarCategoriaHija(evento.target.value).subscribe(
-          (res: any) => {
-            this.categoriashijas = res.data;
-          }
-        );
-      }, 2000);
+  buscarCategoriaHija(nombre:string){
+    if (nombre.length > 0) {
+      this.categoriasHijaSvc.buscarCategoriaHija(nombre).subscribe(
+        (res: any) => {
+          this.categoriashijas = res.data;
+        }
+      );
     } else {      
       this.categoriashijas = [];
     }

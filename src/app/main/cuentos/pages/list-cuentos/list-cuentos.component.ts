@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { fromEvent } from 'rxjs';
 import Swal from 'sweetalert2';
 import { CuentosService } from '../cuentos.service';
+import { debounceTime, map, switchMap } from "rxjs/operators";
 declare var $: any;
 
 @Component({
@@ -20,6 +22,16 @@ export class ListCuentosComponent implements OnInit {
 
   ngOnInit(): void {
     this.listCuentos();
+
+    var searchCuento = document.getElementById('searchCuento') as HTMLInputElement;
+    var keyUpEvent = fromEvent(searchCuento, 'keyup').pipe(
+      map((event) => (event.target as HTMLInputElement).value)
+    );
+
+    keyUpEvent.pipe(
+      debounceTime(1000),
+      switchMap(async (value) => this.buscarCuento(value))
+    ).subscribe();
   }
 
   listCuentos() {
@@ -98,15 +110,13 @@ export class ListCuentosComponent implements OnInit {
     }
   }
 
-  buscarCuento(evento:any){
-    if (evento.target.value != '') {
-      setTimeout(()=>{
-        this.cuentosSvc.buscarCuento(evento.target.value).subscribe(
-          (res: any) => {
-            this.cuentos = res.data;
-          }
-        );
-      }, 2000);
+  buscarCuento(nombre:string){
+    if (nombre.length > 0) {
+      this.cuentosSvc.buscarCuento(nombre).subscribe(
+        (res: any) => {
+          this.cuentos = res.data;
+        }
+      );
     } else {      
       this.listCuentos();
     }

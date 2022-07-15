@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { CategoriasService } from '../../categorias.service';
 import { LenguajesService } from 'src/app/main/parametros/lenguajes/lenguajes.service';
 import Swal from 'sweetalert2';
+import { fromEvent } from 'rxjs';
+import { debounceTime, map, switchMap } from "rxjs/operators";
 
 @Component({
   selector: 'app-list-categorias',
@@ -21,6 +23,16 @@ export class ListCategoriasComponent implements OnInit {
 
   ngOnInit() {
     this.listarIdioma();
+
+    var searchCategoria = document.getElementById('searchCategoria') as HTMLInputElement;
+    var keyUpEvent = fromEvent(searchCategoria, 'keyup').pipe(
+      map((event) => (event.target as HTMLInputElement).value)
+    );
+
+    keyUpEvent.pipe(
+      debounceTime(1000),
+      switchMap(async (value) => this.buscarCategoria(value))
+    ).subscribe();
   }
 
   listarCategorias(id_lenguaje:any) {    
@@ -71,15 +83,13 @@ export class ListCategoriasComponent implements OnInit {
     })
   }
 
-  buscarCategoria(evento:any){
-    if (evento.target.value != '') {
-      setTimeout(()=>{
-        this.categoriasSvc.buscarCategoria(evento.target.value).subscribe(
-          (res: any) => {
-            this.categorias = res.data;
-          }
-        );
-      }, 2000);
+  buscarCategoria(nombre:string){
+    if (nombre.length > 0) {
+      this.categoriasSvc.buscarCategoria(nombre).subscribe(
+        (res: any) => {
+          this.categorias = res.data;
+        }
+      );
     } else {      
       this.categorias = [];
     }
