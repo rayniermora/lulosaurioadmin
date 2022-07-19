@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CuentosRoutingModule } from './cuentos-routing.module';
@@ -12,6 +12,8 @@ import { AsignarEtiquetasComponent } from './pages/asignar-etiquetas/asignar-eti
 import { AsignarCategoriasHijasComponent } from './pages/asignar-categorias-hijas/asignar-categorias-hijas.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { EditCuentoComponent } from './pages/edit-cuento/edit-cuento.component';
+
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { EditCuentoComponent } from './pages/edit-cuento/edit-cuento.component';
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
     FormlyBootstrapModule,
     MainPipeModule,
-    CKEditorModule
-  ]
+    CKEditorModule,
+    NgxSpinnerModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CuentosModule { }

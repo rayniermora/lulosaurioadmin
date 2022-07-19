@@ -177,18 +177,24 @@ export class FormCuentosComponent implements OnInit {
       }
     }
 
-    this.cuentosSvc.saveCuento(frmCuento).subscribe(data => {
-        this.response(data)
+    this.cuentosSvc.saveCuento(frmCuento).subscribe(
+      (data:any)=> {
+        if (data.success) {
+          this.response('Éxito', 'success', 'Su registro ha sido creado satisfactoriamente.');
+        } else {
+          this.response('Error', 'warning', 'Ha surgido un error.');
+        }
     });
   }
 
-  response(data: any) {
+  response(titulo: any, icono: any, texto:any) {
     Swal.fire({
-      title: 'Éxito',
-      icon: 'success',
-      text: `Su registro ha sido creado satisfactoriamente!`
-    })
-    this.router.navigate(['/main/cuentos/list-cuentos'])
+      title: titulo,
+      icon: icono,
+      text: texto
+    });
+
+    this.router.navigate(['/main/cuentos/list-cuentos']);
   }
 
 }

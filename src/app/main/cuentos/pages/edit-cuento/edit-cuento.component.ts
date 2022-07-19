@@ -124,7 +124,7 @@ export class EditCuentoComponent implements OnInit {
       this.form.get('sinopsis')?.patchValue(data.sinopsis);
       this.form.get('resumen')?.patchValue(data.resumen);
       this.contenido = data.texto;
-      this.form.get('id_lenguaje')?.disable();
+      // this.form.get('id_lenguaje')?.disable();
     });
   }
 
@@ -140,7 +140,6 @@ export class EditCuentoComponent implements OnInit {
       this.tiposcontenidos = [];
       this.contenidopago = [];
     }
-
   }
 
   listarCategorias(idioma:any) {
@@ -198,12 +197,10 @@ export class EditCuentoComponent implements OnInit {
       }
     }
 
-    this.cuentosSvc.editCuento(frmCuento).subscribe(data => {
-        let jsonData = JSON.stringify(data);
-        let objData = JSON.parse(jsonData);
-
-        if (objData.success) {
-          this.response('Éxito', 'success', 'Su registro ha sido creado satisfactoriamente.');
+    this.cuentosSvc.editCuento(frmCuento).subscribe(
+      (data:any) => {
+        if (data.success) {
+          this.response('Éxito', 'success', 'Su registro ha sido modificado satisfactoriamente.');
         } else {
           this.response('Error', 'warning', 'Ha surgido un error.');
         }

@@ -4,6 +4,7 @@ import { fromEvent } from 'rxjs';
 import Swal from 'sweetalert2';
 import { CuentosService } from '../cuentos.service';
 import { debounceTime, map, switchMap } from "rxjs/operators";
+import { SpinnerService } from 'src/app/services/spinner.service';
 declare var $: any;
 
 @Component({
@@ -12,13 +13,17 @@ declare var $: any;
   styleUrls: ['./list-cuentos.component.css']
 })
 export class ListCuentosComponent implements OnInit {
-
-  constructor( private cuentosSvc: CuentosService, private router: Router ) { }
+  constructor(
+    private cuentosSvc: CuentosService,
+    private router: Router,
+    private spinnerService : SpinnerService) { }
 
   cuentos:any [] = [];
   cuentosxidioma: any [] = [];
   idCuento: any;
   idioma = 1;
+
+  
 
   ngOnInit(): void {
     this.listCuentos();
