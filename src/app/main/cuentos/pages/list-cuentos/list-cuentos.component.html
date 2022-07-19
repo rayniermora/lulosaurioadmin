@@ -23,8 +23,9 @@
           <th>Formato</th>
           <th>Tipo contenido</th>
           <th>Destacado</th>
+          <th>Recomendado</th>
           <th>Idioma</th>
-          <th class="text-right">Acciones</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -41,16 +42,28 @@
           <td>{{cuento.formato}}</td>
           <td>{{cuento.tipo_contenido.nombre}}</td>
           <td class="text-center">
-            <input type="checkbox" [checked]="cuento.recomendado" (change)="agregrarEliminarCuentoDestacado($event,cuento)">
+            <input type="checkbox" [checked]="cuento.destacado" (change)="agregrarEliminarCuentoDestacado($event,cuento)">
+          </td>
+          <td class="text-center">
+            <input type="checkbox" [checked]="cuento.recomendado" (change)="agregarEliminarCuentoRecomendado($event,cuento)">
           </td>
           <td>
-            <a (click)="listCuentoxIdioma(cuento.id_cuento)" class="btn btn-link btn-warning" data-toggle="modal" data-target="#exampleModal">Idioma <i class="fa fa-edit"></i></a>
+            <a (click)="listCuentoxIdioma(cuento.id_cuento)" class="btn btn-link btn-secondary" data-toggle="modal" data-target="#exampleModal">
+              <i class="fa fa-globe" data-toggle="tooltip" data-placement="top" title="Idioma"></i>
+            </a>
           </td>
-          <td class="text-right">
-            <a class="btn btn-link btn-success" (click)="asignarEtiquetas(cuento)">Asignar etiquetas </a>
-            <a class="btn btn-link btn-info" (click)="asignarCategorias(cuento)">Asignar sección </a>
-            <a class="btn btn-link btn-warning" (click)="editarCuento(cuento.id)" ><i class="fa fa-edit"></i>Editar</a>
-            <a class="btn btn-link btn-darnger" (click)="eliminarCuento(cuento)" ><i class="fa fa-times"></i>Eliminar</a>
+          <td >
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Acciones
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" (click)="asignarEtiquetas(cuento)">Asignar etiquetas</a>
+                <a class="dropdown-item" (click)="asignarCategorias(cuento)">Asignar secciones</a>
+                <a class="dropdown-item" (click)="editarCuento(cuento.id)">Editar</a>
+                <a class="dropdown-item" (click)="eliminarCuento(cuento.id)">Eliminar</a>
+              </div>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -80,7 +93,7 @@
                 <th>Formato</th>
                 <th>Tipo contenido</th>
                 <th>Idioma</th>
-                <th class="text-right">Acciones</th>
+                <th></th>
               </tr>            
             </thead>
             <tbody>
@@ -97,12 +110,17 @@
                 <td>{{idioma.tipo_contenido.nombre}}</td>
                 <td>{{idioma.lenguaje.nombre}}</td>
                 <td>
-                  <!-- <a class="btn btn-link btn-warning" >Editar <i class="fa fa-edit"></i></a> -->
-                  <!-- <a class="btn btn-link btn-darnger" (click)="eliminarCuento(idioma)" ><i class="fa fa-times"></i>Eliminar</a> -->
-                  <a class="btn btn-link btn-success" (click)="asignarEtiquetas(idioma)">Asignar etiquetas </a>
-                  <a class="btn btn-link btn-info" (click)="asignarCategorias(idioma)">Asignar sección </a>
-                  <a class="btn btn-link btn-warning" (click)="editarCuento(idioma.id)" ><i class="fa fa-edit"></i>Editar</a>
-                  <a class="btn btn-link btn-darnger" (click)="eliminarCuento(idioma)" ><i class="fa fa-times"></i>Eliminar</a>
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Acciones
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonModal">
+                      <a class="dropdown-item" (click)="asignarEtiquetas(idioma)">Asignar etiquetas</a>
+                      <a class="dropdown-item" (click)="asignarCategorias(idioma)">Asignar secciones</a>
+                      <a class="dropdown-item" (click)="editarCuento(idioma.id)">Editar</a>
+                      <a class="dropdown-item" (click)="eliminarCuento(idioma.id)">Eliminar</a>
+                    </div>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -115,4 +133,5 @@
       </div>
     </div>
   </div>
+  <ngx-spinner type="ball-scale-multiple">algo</ngx-spinner>
 </div>

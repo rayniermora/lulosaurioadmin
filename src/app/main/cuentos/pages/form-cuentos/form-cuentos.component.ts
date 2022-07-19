@@ -28,6 +28,7 @@ export class FormCuentosComponent implements OnInit {
   tiposcontenidos: any = []
   contenidopago: any = []
   imagen_cuento :any;
+  imagen_destacado :any;
   audio_cuento :any;
   video_cuento :any;
   id_cuento: any;
@@ -54,7 +55,7 @@ export class FormCuentosComponent implements OnInit {
 
     if (this.id_cuento == 0 || this.id_cuento == null) {
       this.form.get('id_lenguaje')?.patchValue(1);
-      this.form.get('id_lenguaje')?.disable();
+      // this.form.get('id_lenguaje')?.disable();
       this.listarCategorias(1);
       this.listarSubCategorias(1);
       this.listarTiposContenido(1);
@@ -74,6 +75,7 @@ export class FormCuentosComponent implements OnInit {
       duracion: new FormControl('',[Validators.required]),
       contenido_pago: new FormControl('',[Validators.required]),
       imagen_banner: [''],
+      imagen_destacado: [''],
       audio: [''],
       video_fondo: new FormControl('',[Validators.required])
     });
@@ -82,6 +84,12 @@ export class FormCuentosComponent implements OnInit {
   banner(e: any){
     if (e.target.files.length > 0) {
       this.imagen_cuento = e.target.files[0];
+    }
+  }
+
+  bannerDestacado(e: any){
+    if (e.target.files.length > 0) {
+      this.imagen_destacado = e.target.files[0];
     }
   }
 
@@ -162,23 +170,31 @@ export class FormCuentosComponent implements OnInit {
         frmCuento.append(item, this.audio_cuento);
       } else if (item === 'video_fondo') {
         frmCuento.append(item, this.video_cuento);
+      } else if (item === 'imagen_destacado') {
+        frmCuento.append(item, this.imagen_destacado);
       } else {
         frmCuento.append(item, this.form.value[item]);
       }
     }
 
-    this.cuentosSvc.saveCuento(frmCuento).subscribe(data => {
-        this.response(data)
+    this.cuentosSvc.saveCuento(frmCuento).subscribe(
+      (data:any)=> {
+        if (data.success) {
+          this.response('Éxito', 'success', 'Su registro ha sido creado satisfactoriamente.');
+        } else {
+          this.response('Error', 'warning', 'Ha surgido un error.');
+        }
     });
   }
 
-  response(data: any) {
+  response(titulo: any, icono: any, texto:any) {
     Swal.fire({
-      title: 'Éxito',
-      icon: 'success',
-      text: `Su registro ha sido creado satisfactoriamente!`
-    })
-    this.router.navigate(['/main/cuentos/list-cuentos'])
+      title: titulo,
+      icon: icono,
+      text: texto
+    });
+
+    this.router.navigate(['/main/cuentos/list-cuentos']);
   }
 
 }

@@ -4,6 +4,7 @@ import { fromEvent } from 'rxjs';
 import Swal from 'sweetalert2';
 import { CuentosService } from '../cuentos.service';
 import { debounceTime, map, switchMap } from "rxjs/operators";
+import { SpinnerService } from 'src/app/services/spinner.service';
 declare var $: any;
 
 @Component({
@@ -12,13 +13,17 @@ declare var $: any;
   styleUrls: ['./list-cuentos.component.css']
 })
 export class ListCuentosComponent implements OnInit {
-
-  constructor( private cuentosSvc: CuentosService, private router: Router ) { }
+  constructor(
+    private cuentosSvc: CuentosService,
+    private router: Router,
+    private spinnerService : SpinnerService) { }
 
   cuentos:any [] = [];
   cuentosxidioma: any [] = [];
   idCuento: any;
   idioma = 1;
+
+  
 
   ngOnInit(): void {
     this.listCuentos();
@@ -49,6 +54,7 @@ export class ListCuentosComponent implements OnInit {
         this.cuentosxidioma = response;
     });
   }
+
   asignarEtiquetas(cuento: any){
     this.hideModal();
     this.router.navigate(['/main/cuentos/asignar-etiquetas', {id: cuento.id, idioma: cuento.id_lenguaje}]);
@@ -120,6 +126,29 @@ export class ListCuentosComponent implements OnInit {
     } else {      
       this.listCuentos();
     }
+  }
+
+  agregarEliminarCuentoRecomendado(evento:any, cuento:any){
+    let chkRecomendado = evento.target.checked ? 1 : 0;
+
+    let objCuento = {
+      recomendado: chkRecomendado,
+      id: cuento.id
+    };
+    
+    this.cuentosSvc.actualizarCuentoRecomendado(objCuento).subscribe(
+      (response:any) => {
+        if (response.success) {
+          Swal.fire({
+            title: 'Éxito',
+            icon: 'success',
+            text: `Ejecutado satisfactoriamente!`
+          });
+          
+          this.listCuentos();
+        }
+      }
+    );
   }
 
 }

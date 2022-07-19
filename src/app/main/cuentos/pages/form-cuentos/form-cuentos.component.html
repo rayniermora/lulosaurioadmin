@@ -33,7 +33,6 @@
                 <option *ngFor="let item of subcategorias" value="{{item.id}}">{{item.nombre}}</option>
               </select>
             </div>
-
           </div>
 
           <div class="form-row">
@@ -74,11 +73,6 @@
               <label for="resumen">RESUMEN *</label>
               <textarea class="form-control" formControlName="resumen" cols="30" rows="5"></textarea>
             </div>
-
-            <!-- <div class="col-md-4 col-sm-4">
-              <label for="texto">TEXTO *</label>
-              <textarea class="form-control" formControlName="texto" cols="30" rows="5"></textarea>
-            </div> -->
           </div>
 
           <div class="form-row">
@@ -111,6 +105,28 @@
                   </div>
                 </div>
                 <div class="card-body ">
+                  <div class="author">
+                    <a href="#">
+                      <img class="avatar border-gray" [src]=" imagen_cuento | imageSanitizer" alt="...">
+                    </a>
+                  </div>
+                </div>
+                <div class="card-footer ">
+                  <div class="form-group">
+                    <label class="form-label" for="imagen_destacado">Banner Destacado</label>
+                    <input formControlName="imagen_destacado" (change)="bannerDestacado($event)" type="file">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+              <div class="card card-user">
+                <div class="card-header no-padding">
+                  <div class="card-image">
+                  </div>
+                </div>
+                <div class="card-body ">
                   <div class="">
                     <audio controls>
                       <source src="horse.ogg" type="audio/ogg">
@@ -128,7 +144,9 @@
                 </div>
               </div>
             </div>
-
+          </div>
+          
+          <div class="form-row">
             <div class="col-md-4 col-sm-4">
               <div class="card card-user">
                 <div class="card-header no-padding">
@@ -143,7 +161,7 @@
                     Your browser does not support the audio element.
                     </video>
                   </div>
-
+  
                 </div>
                 <div class="card-footer ">
                   <div class="form-group">

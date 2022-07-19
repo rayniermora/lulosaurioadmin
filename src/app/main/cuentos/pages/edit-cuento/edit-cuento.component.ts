@@ -28,6 +28,7 @@ export class EditCuentoComponent implements OnInit {
   tiposcontenidos: any = []
   contenidopago: any = []
   imagen_cuento :any;
+  imagen_destacado :any;
   audio_cuento :any;
   video_cuento :any;
   id_cuento: any;
@@ -37,6 +38,7 @@ export class EditCuentoComponent implements OnInit {
   editAudio: any = false;
   editVideo: any = false;
   editBanner: any = false;
+  editBannerDestacado: any = false;
   
   constructor(
     private router: Router,
@@ -70,6 +72,7 @@ export class EditCuentoComponent implements OnInit {
       duracion: new FormControl('',[Validators.required]),
       contenido_pago: new FormControl('',[Validators.required]),
       imagen_banner: [''],
+      imagen_destacado: [''],
       audio: [''],
       video_fondo: new FormControl('',[Validators.required])
     });
@@ -79,6 +82,13 @@ export class EditCuentoComponent implements OnInit {
     if (e.target.files.length > 0) {
       this.imagen_cuento = e.target.files[0];
       this.editBanner = true;
+    }
+  }
+
+  bannerDestacado(e: any){
+    if (e.target.files.length > 0) {
+      this.imagen_destacado = e.target.files[0];
+      this.editBannerDestacado = true;
     }
   }
 
@@ -114,7 +124,7 @@ export class EditCuentoComponent implements OnInit {
       this.form.get('sinopsis')?.patchValue(data.sinopsis);
       this.form.get('resumen')?.patchValue(data.resumen);
       this.contenido = data.texto;
-      this.form.get('id_lenguaje')?.disable();
+      // this.form.get('id_lenguaje')?.disable();
     });
   }
 
@@ -130,7 +140,6 @@ export class EditCuentoComponent implements OnInit {
       this.tiposcontenidos = [];
       this.contenidopago = [];
     }
-
   }
 
   listarCategorias(idioma:any) {
@@ -171,6 +180,7 @@ export class EditCuentoComponent implements OnInit {
     frmCuento.append('texto', this.contenido);
     frmCuento.append('editAudio', this.editAudio);
     frmCuento.append('editBanner', this.editBanner);
+    frmCuento.append('editBannerDestacado', this.editBannerDestacado);
     frmCuento.append('editVideo', this.editVideo);
 
     for (const item in this.form.value) {
@@ -180,17 +190,17 @@ export class EditCuentoComponent implements OnInit {
         frmCuento.append(item, this.audio_cuento);
       } else if (item === 'video_fondo') {
         frmCuento.append(item, this.video_cuento);
+      } else if (item === 'imagen_destacado') {
+        frmCuento.append(item, this.imagen_destacado);
       } else {
         frmCuento.append(item, this.form.value[item]);
       }
     }
 
-    this.cuentosSvc.editCuento(frmCuento).subscribe(data => {
-        let jsonData = JSON.stringify(data);
-        let objData = JSON.parse(jsonData);
-
-        if (objData.success) {
-          this.response('Éxito', 'success', 'Su registro ha sido creado satisfactoriamente.');
+    this.cuentosSvc.editCuento(frmCuento).subscribe(
+      (data:any) => {
+        if (data.success) {
+          this.response('Éxito', 'success', 'Su registro ha sido modificado satisfactoriamente.');
         } else {
           this.response('Error', 'warning', 'Ha surgido un error.');
         }
