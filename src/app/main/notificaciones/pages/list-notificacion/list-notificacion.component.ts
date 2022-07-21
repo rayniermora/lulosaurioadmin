@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
-import { NotificacionService } from '../notificacion.service';
+import { NotificacionService } from '../../../../services/notificacion.service';
 
 @Component({
   selector: 'app-list-notificacion',

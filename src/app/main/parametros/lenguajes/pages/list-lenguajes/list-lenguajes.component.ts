@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { LenguajesService } from '../../lenguajes.service';
+import { LenguajesService } from '../../../../../services/lenguajes.service';
 
 @Component({
   selector: 'app-list-lenguajes',

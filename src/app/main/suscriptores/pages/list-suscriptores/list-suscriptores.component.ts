@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuariosService } from 'src/app/main/parametros/usuarios/usuarios.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 import { debounceTime, map, switchMap } from "rxjs/operators";
 import { fromEvent } from 'rxjs';
 

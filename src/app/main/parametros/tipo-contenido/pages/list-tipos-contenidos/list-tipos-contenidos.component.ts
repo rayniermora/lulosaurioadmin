@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { LenguajesService } from '../../../lenguajes/lenguajes.service';
-import { TipoContenidoService } from '../../tipo-contenido.service';
+import { LenguajesService } from '../../../../../services/lenguajes.service';
+import { TipoContenidoService } from '../../../../../services/tipo-contenido.service';
 
 @Component({
   selector: 'app-list-tipos-contenidos',

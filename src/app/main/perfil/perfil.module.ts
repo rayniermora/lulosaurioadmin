@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PerfilRoutingModule } from './perfil-routing.module';
 import { FormPerfilComponent } from './pages/form-perfil/form-perfil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     PerfilRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    NgxSpinnerModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PerfilModule { }

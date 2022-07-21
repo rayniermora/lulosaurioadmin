@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { LenguajesService } from '../../lenguajes/lenguajes.service';
-import { SubCategoriasService } from '../sub-categorias.service';
+import { LenguajesService } from '../../../../services/lenguajes.service';
+import { SubCategoriasService } from '../../../../services/sub-categorias.service';
 
 @Component({
   selector: 'app-list-sub-categorias',

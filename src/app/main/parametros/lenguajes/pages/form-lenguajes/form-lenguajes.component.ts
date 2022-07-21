@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import Swal from 'sweetalert2';
-import { LenguajesService } from '../../lenguajes.service';
+import { LenguajesService } from '../../../../../services/lenguajes.service';
 
 @Component({
   selector: 'app-form-lenguajes',

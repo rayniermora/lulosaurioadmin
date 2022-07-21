@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { LenguajesService } from '../../../lenguajes/lenguajes.service';
+import { LenguajesService } from '../../../../../services/lenguajes.service';
 import Swal from 'sweetalert2';
-import { EtiquetaService } from '../../etiqueta.service';
+import { EtiquetaService } from '../../../../../services/etiqueta.service';
 
 @Component({
   selector: 'app-form-etiqueta',

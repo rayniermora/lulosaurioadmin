@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TipoContenidoService } from './tipo-contenido.service';
+import { TipoContenidoService } from '../../../services/tipo-contenido.service';
 
 describe('TipoContenidoService', () => {
   let service: TipoContenidoService;
