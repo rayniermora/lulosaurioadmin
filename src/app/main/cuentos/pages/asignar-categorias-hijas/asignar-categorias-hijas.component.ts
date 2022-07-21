@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { EtiquetaService } from 'src/app/main/parametros/etiquetas/etiqueta.service';
-import { CuentosService } from '../cuentos.service';
+import { EtiquetaService } from 'src/app/services/etiqueta.service';
+import { CuentosService } from '../../../../services/cuentos.service';
 import Swal from 'sweetalert2';
-import { CategoriaHijaService } from 'src/app/main/parametros/categoria-hija/categoria-hija.service';
+import { CategoriaHijaService } from 'src/app/services/categoria-hija.service';
 
 @Component({
   selector: 'app-asignar-categorias-hijas',

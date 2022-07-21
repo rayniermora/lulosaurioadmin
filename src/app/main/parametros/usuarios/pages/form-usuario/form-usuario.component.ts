@@ -3,8 +3,8 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import Swal from 'sweetalert2';
-import { RolesService } from '../../../roles/roles.service';
-import { UsuariosService } from '../../usuarios.service';
+import { RolesService } from '../../../../../services/roles.service';
+import { UsuariosService } from '../../../../../services/usuarios.service';
 
 @Component({
   selector: 'app-form-usuario',

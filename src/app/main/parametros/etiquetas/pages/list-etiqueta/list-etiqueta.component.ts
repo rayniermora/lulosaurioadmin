@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { LenguajesService } from '../../../lenguajes/lenguajes.service';
-import { EtiquetaService } from '../../etiqueta.service';
+import { LenguajesService } from '../../../../../services/lenguajes.service';
+import { EtiquetaService } from '../../../../../services/etiqueta.service';
 import { debounceTime, map, switchMap } from "rxjs/operators";
 import { fromEvent } from 'rxjs';
 

@@ -3,10 +3,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { CategoriasService } from 'src/app/main/parametros/categorias/categorias.service';
-import { LenguajesService } from 'src/app/main/parametros/lenguajes/lenguajes.service';
+import { CategoriasService } from 'src/app/services/categorias.service';
+import { LenguajesService } from 'src/app/services/lenguajes.service';
 import Swal from 'sweetalert2';
-import { CuentosService } from '../cuentos.service';
+import { CuentosService } from '../../../../services/cuentos.service';
 
 @Component({
   selector: 'app-edit-cuento',

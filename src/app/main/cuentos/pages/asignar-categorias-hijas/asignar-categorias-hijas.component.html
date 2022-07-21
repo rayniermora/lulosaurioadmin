@@ -3,28 +3,16 @@
     <div>
       <h4 class="card-title">Asignar Sección a cuentos</h4>
       <p class="card-category">
-        <!-- {{ model?.id ? 'Actualizar' : 'Agregar' }} Categoria -->
       </p>
     </div>
     <button type="button" class="align-self-start btn btn-success" routerLink="/main/cuentos/list-cuentos">CANCELAR</button>
   </div>
-  <!-- <div class="card-content p-3">
-    <form [formGroup]="form" (ngSubmit)="onSubmit(model)">
-      <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
-      <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Seleccionar</button>
-    </form>
-  </div> -->
   <form style="padding: 10px;" >
     <div class="form-group" >
-
       <select name="eeee" [(ngModel)]="id_cathijas" style="height:50px" (change)="onSubmit($event)"  class="form-control" id="etix">
         <option *ngFor="let cathija of categoriahija; let i = index" [value]="i">{{cathija.nombre}}</option>
-
       </select>
-
     </div>
-    <!-- <button type="submit"  class="btn btn-primary">Seleccionar</button> -->
-
   </form>
 </div>
 <div class="card">
@@ -32,10 +20,8 @@
     <div>
       <h4 class="card-title">Secciones Seleccionadas</h4>
       <p class="card-category">
-        <!-- {{ model?.id ? 'Actualizar' : 'Agregar' }} Categoria -->
       </p>
     </div>
-
   </div>
   <div class="card-content p-3">
     <span *ngFor="let item of categoriashijasseleccionadas; let i = index" class="btn btn-link btn-info" >{{item.nombre}}
@@ -45,15 +31,12 @@
     <button *ngIf="habilitaenviar" type="button" (click)="enviar()" class="btn btn-info">Enviar</button>
   </div>
 </div>
-
-
 <div class="card striped-tabled-with-hover">
   <div class="card-header d-flex justify-content-between">
     <div>
       <h4 class="card-title">Secciones</h4>
       <p class="card-category">Listado de Secciones asignadas</p>
     </div>
-
   </div>
   <div class="card-content table-responsive table-full-width p-3">
     <table class="table table-bigboy">
@@ -76,4 +59,4 @@
     </table>
   </div>
 </div>
-
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>

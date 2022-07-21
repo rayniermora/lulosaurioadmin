@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SuscriptoresRoutingModule } from './suscriptores-routing.module';
@@ -9,6 +9,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { ListSuscriptoresComponent } from './pages/list-suscriptores/list-suscriptores.component';
 import { FormSuscriptorComponent } from './pages/form-suscriptor/form-suscriptor.component';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { FormSuscriptorComponent } from './pages/form-suscriptor/form-suscriptor
     ReactiveFormsModule,
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
     FormlyBootstrapModule,
-    MainPipeModule
-  ]
+    MainPipeModule,
+    NgxSpinnerModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SuscriptoresModule { }

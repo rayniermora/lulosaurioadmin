@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ParametrosRoutingModule } from './parametros-routing.module';
 import { ListCategoriasComponent } from './categorias/pages/list-categorias/list-categorias.component';
@@ -27,7 +27,7 @@ import { ListUsuariosComponent } from './usuarios/pages/list-usuarios/list-usuar
 import { ListTipoSuscripcionComponent } from './tipo-suscripcion/pages/list-tipo-suscripcion/list-tipo-suscripcion.component';
 import { FormTipoSuscripcionComponent } from './tipo-suscripcion/pages/form-tipo-suscripcion/form-tipo-suscripcion.component';
 
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -57,6 +57,8 @@ import { FormTipoSuscripcionComponent } from './tipo-suscripcion/pages/form-tipo
     ReactiveFormsModule,
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
     FormlyBootstrapModule,
-  ]
+    NgxSpinnerModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ParametrosModule { }

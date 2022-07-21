@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { UsuariosService } from 'src/app/main/parametros/usuarios/usuarios.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 import Swal from 'sweetalert2';
 
 @Component({

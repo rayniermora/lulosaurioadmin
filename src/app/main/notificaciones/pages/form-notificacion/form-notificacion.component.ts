@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { NotificacionService } from '../notificacion.service';
+import { NotificacionService } from '../../../../services/notificacion.service';
 
 @Component({
   selector: 'app-form-notificacion',

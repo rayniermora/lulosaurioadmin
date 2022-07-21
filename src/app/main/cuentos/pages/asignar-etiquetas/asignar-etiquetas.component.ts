@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { EtiquetaService } from 'src/app/main/parametros/etiquetas/etiqueta.service';
+import { EtiquetaService } from 'src/app/services/etiqueta.service';
 import Swal from 'sweetalert2';
-import { CuentosService } from '../cuentos.service';
+import { CuentosService } from '../../../../services/cuentos.service';
 
 @Component({
   selector: 'app-asignar-etiquetas',
