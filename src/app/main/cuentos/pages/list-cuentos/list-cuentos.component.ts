@@ -130,7 +130,7 @@ export class ListCuentosComponent implements OnInit {
 
     let objCuento = {
       recomendado: chkRecomendado,
-      id: cuento.id
+      id: cuento.id_cuento
     };
     
     this.cuentosSvc.actualizarCuentoRecomendado(objCuento).subscribe(
