@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  // url:'https://admin.lulosaurio.com/api/',
-  // link:'https://admin.lulosaurio.com/img/',
-  url:'https://tidy-penguin-43.loca.lt/api/',
-  link:'https://tidy-penguin-43.loca.lt/img/',
+   url:'https://admin.lulosaurio.com/api/',
+   link:'https://admin.lulosaurio.com/img/',
+  //url:'https://tidy-penguin-43.loca.lt/api/',
+  //link:'https://tidy-penguin-43.loca.lt/img/',
   // url:'http://luloback.test/api/',
   // link:'http://luloback.test/img/',
  mapboxkey: 'pk.eyJ1IjoicmF5bmllcjE4IiwiYSI6ImNraWt0MG96cTBjeTAyeXFtbGZia2gwN3IifQ.ZFwgi9n9DvTyvDZs9A6BQQ'

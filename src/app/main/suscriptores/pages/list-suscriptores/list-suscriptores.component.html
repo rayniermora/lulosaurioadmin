@@ -1,14 +1,14 @@
 <div class="card striped-tabled-with-hover">
   <div class="card-header d-flex justify-content-between">
     <div>
-      <h4 class="card-title">Suscriptores</h4>
-      <p class="card-category">Listado de suscriptores</p>
+      <h4 class="card-title">Usuarios Registrados</h4>
+      <p class="card-category">Listado de usuarios</p>
     </div>
     <!-- <button type="button" class="align-self-start btn btn-fill btn-success" routerLink="/main/suscrip/form-usuario">AGREGAR</button> -->
   </div>
   <div class="card-content table-responsive table-full-width p-3">
     <div class="col-md-4 col-sm-4">
-        <label>Buscar suscriptor</label>
+        <label>Buscar usuario</label>
         <input class="form-control" type="text" id="searchSuscriptor">
     </div>
 
@@ -28,7 +28,7 @@
           <td>{{usuario.email}}</td>
           <td class="text-right">
             <a class="btn btn-link btn-warning" (click)="updateUsuario(usuario)">Editar <i class="fa fa-edit"></i></a>
-            <a class="btn btn-link btn-darnger" >Eliminar <i class="fa fa-times"></i></a>
+            <!--  <a class="btn btn-link btn-darnger" >Eliminar <i class="fa fa-times"></i></a>-->
           </td>
         </tr>
       </tbody>
